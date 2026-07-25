@@ -11,8 +11,12 @@
   - Web拍手機能、リアルタイム時計、おみくじ機能
   - GitHub Pages 用の案内・構成
 - Gitリポジトリの初期化 (`git init`) および全ファイルのファーストコミット (`git commit`) を実行
-- GitHub CLI 認証を経て GitHub リポジトリ `kojikoji81/retro-diary` を作成し Push 完了
-- GitHub Pages を有効化（公開URL: https://kojikoji81.github.io/retro-diary/）
+- サイトタイトルを「kojikoji81の日記」へ更新し、プロフィールや外部リンクを削除して純粋な日記サイトへとシンプル化
+- 日記エントリーを本日（2026/07/25）の1件のみに変更・Push完了
+- 新規リポジトリ `kojikoji81/diary` を GitHub 上に作成して全ファイルを Push
+- GitHub Pages を有効化（公開URL: https://kojikoji81.github.io/diary/）
+
+
 
 
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>【手元用】日記エントリー作成ツール</title>
+    <style>
+        body { background: #111; color: #eee; font-family: sans-serif; padding: 20px; font-size: 14px; }
+        .box { max-width: 600px; margin: 0 auto; background: #222; padding: 20px; border: 1px solid #444; border-radius: 5px; }
+        label { display: block; margin-top: 10px; color: #00ff00; font-weight: bold; }
+        input[type="text"], textarea { width: 100%; background: #000; color: #fff; border: 1px solid #555; padding: 8px; box-sizing: border-box; font-size: 14px; }
+        textarea { height: 120px; }
+        button { background: #0088ff; color: #fff; border: none; padding: 10px 20px; margin-top: 15px; cursor: pointer; font-weight: bold; border-radius: 3px; }
+        button:hover { background: #0066cc; }
+        #output { background: #050505; color: #00ffff; font-family: monospace; padding: 10px; border: 1px solid #333; margin-top: 15px; white-space: pre-wrap; word-break: break-all; }
+        .hint { font-size: 12px; color: #aaa; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>✍️ kojikoji81の日記 エントリー作成ツール</h2>
+        <p class="hint">入力後「JSONコードを生成」を押して、出力されたテキストを <code>posts.json</code> の先頭に追加してください。</p>
+
+        <label>日付 (例: 2026/07/26(日))</label>
+        <input type="text" id="input-date">
+
+        <label>タイトル (例: 今日の出来事（笑）)</label>
+        <input type="text" id="input-title">
+
+        <label>タグ (例: 日記, 雑記)</label>
+        <input type="text" id="input-tag" value="日記">
+
+        <label>本文 (段落ごとに改行してください)</label>
+        <textarea id="input-body" placeholder="1段落目...&#10;&#10;2段落目...（笑）"></textarea>
+
+        <button onclick="generateJson()">JSONコードを生成してコピー</button>
+
+        <div id="output-container" style="display:none;">
+            <label>生成されたJSON（posts.jsonの [ のすぐ後ろに貼り付けてください）:</label>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script>
+        // デフォルトで今日の日付を入力
+        const now = new Date();
+        const days = ['日', '月', '火', '水', '木', '金', '土'];
+        document.getElementById('input-date').value = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}/${String(now.getDate()).padStart(2,'0')}（${days[now.getDay()]}）`;
+
+        function generateJson() {
+            const date = document.getElementById('input-date').value;
+            const title = document.getElementById('input-title').value;
+            const tag = document.getElementById('input-tag').value;
+            const rawBody = document.getElementById('input-body').value;
+
+            if (!title || !rawBody) {
+                alert('タイトルと本文を入力してください');
+                return;
+            }
+
+            const paragraphs = rawBody.split('\n\n').filter(p => p.trim() !== '');
+
+            const newEntry = {
+                id: Date.now(),
+                date: date,
+                title: title,
+                tag: tag,
+                content: paragraphs
+            };
+
+            const jsonStr = JSON.stringify(newEntry, null, 2) + ",";
+            document.getElementById('output').textContent = jsonStr;
+            document.getElementById('output-container').style.display = 'block';
+
+            navigator.clipboard.writeText(jsonStr).then(() => {
+                alert('クリップボードにコピーしました！posts.json に貼り付けてください。');
+            });
+        }
+    </script>
+</body>
+</html>

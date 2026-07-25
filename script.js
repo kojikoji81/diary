@@ -1,5 +1,5 @@
 /* =========================================================
-   2000年代初頭 個人テキストサイト / 個人日記風 JavaScript
+   2000年代初頭 個人テキストサイト / kojikoji81の日記 JavaScript
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -15,7 +15,67 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 4. おみくじ機能の初期化
     initOmikuji();
+
+    // 5. posts.json から日記データを読み込んで動的描画
+    loadDiaryPosts();
 });
+
+/**
+ * posts.json から日記データを読み込んで描画する
+ */
+function loadDiaryPosts() {
+    const container = document.getElementById("diary-posts-container");
+    if (!container) return;
+
+    fetch("posts.json?t=" + new Date().getTime()) // キャッシュ対策
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+        })
+        .then(posts => {
+            if (!Array.isArray(posts) || posts.length === 0) {
+                container.innerHTML = '<div style="color:#aaaaaa; padding:10px;">記事がまだありません。</div>';
+                return;
+            }
+
+            let html = "";
+            posts.forEach(post => {
+                const paragraphs = Array.isArray(post.content) 
+                    ? post.content.map(p => `<p>${p}</p>`).join("")
+                    : `<p>${post.content}</p>`;
+
+                const tagHtml = post.tag ? `<span class="entry-tag">${post.tag}</span>` : '';
+
+                html += `
+                <div class="diary-entry">
+                    <div class="entry-header">
+                        <span class="entry-date-title">${escapeHtml(post.date)} 「${escapeHtml(post.title)}」</span>
+                        ${tagHtml}
+                    </div>
+                    <div class="entry-body">
+                        ${paragraphs}
+                    </div>
+                </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        })
+        .catch(err => {
+            console.error("日記の読み込みに失敗しました:", err);
+            // フォールバック表示（直接HTMLにあるバックアップ用）
+        });
+}
+
+/**
+ * エスケープ処理（安全のため。HTMLタグは許可するため簡易的処理）
+ */
+function escapeHtml(str) {
+    if (!str) return "";
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
 
 /**
  * リアルタイム時計（2000年代風フォーマット）
@@ -54,7 +114,6 @@ function initCounter() {
         sessionStorage.setItem("visited_session", "true");
     }
 
-
     // 6桁0埋めで表示
     const formattedCount = String(count).padStart(6, "0");
     counterElement.textContent = formattedCount;
@@ -62,7 +121,7 @@ function initCounter() {
     // キリ番判定（100刻みなど）
     if (count % 100 === 0) {
         setTimeout(function() {
-            alert(`【祝！】あなたは ${count} 人目のキリ番訪問者です！\nBBS（掲示板）でキリ番報告をお願いします（笑）`);
+            alert(`【祝！】あなたは ${count} 人目のキリ番訪問者です！\nWeb拍手からキリ番報告をお願いします（笑）`);
         }, 500);
     }
 }
@@ -81,9 +140,9 @@ function initWebClap() {
     const clapMessages = [
         "拍手ありがとうございます！更新の励みになります(*^^*)",
         "パチパチありがとうございます！！これからも頑張ります（爆）",
-        "拍手感謝です！相互リンクも随時募集中です〜！",
+        "拍手感謝です！また遊びに来てくださいね〜！",
         "ポチッと拍手ありがとうございます！(マテ",
-        "毎度おなじみ拍手感謝！また遊びに来てくださいね♪"
+        "毎度おなじみ拍手感謝！ゆっくりしていってね！"
     ];
 
     clapBtn.addEventListener("click", function () {
@@ -106,8 +165,8 @@ function initOmikuji() {
 
     const fortunes = [
         { rank: "超大吉 (大キリ番)", item: "10BASE-T LANケーブル", text: "今日はテレホタイムにISDNが最速で繋がります！" },
-        { rank: "大吉", item: "3.5インチフロッピーディスク", text: "お気に入りのテキストサイトが更新されているかも！" },
-        { rank: "中吉", item: "ボールマウス（裏の球体）", text: "掲示板で良いレスがもらえる予感（笑）" },
+        { rank: "大吉", item: "3.5インチフロッピーディスク", text: "お気に入りのサイトが更新されているかも！" },
+        { rank: "中吉", item: "ボールマウス（裏の球体）", text: "良いレスがもらえる予感（笑）" },
         { rank: "小吉", item: "CD-R 700MB", text: "Winampのスキン変更で気分転換がおすすめ！" },
         { rank: "吉", item: "テレホンカード (50度数)", text: "キリ番を踏めるかもしれない運勢です。" },
         { rank: "末吉", item: "ダイヤルアップ接続音", text: "夜更かししすぎて親に怒られないように注意！" },
@@ -127,5 +186,5 @@ function initOmikuji() {
  */
 function reportKiriban() {
     const currentCount = document.getElementById("counter-display") ? document.getElementById("counter-display").textContent : "001235";
-    alert(`【キリ番報告】\n現在のカウント: ${currentCount}\nキリ番・前後賞をゲットされた方はBBSまたはWeb拍手よりご一報ください！`);
+    alert(`【キリ番報告】\n現在のカウント: ${currentCount}\nキリ番・前後賞をゲットされた方はWeb拍手よりご一報ください！`);
 }
