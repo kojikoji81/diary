@@ -284,16 +284,9 @@ ul.nav-list li {
     text-shadow: 0 0 4px #00ff00;
 }
 
-/* キリ番告知 */
-.kiriban-info {
-    font-size: 10px;
-    color: #ff9900;
-    text-align: center;
-    margin-top: 4px;
-}
-
 /* BGM情報 & 時計 */
 .status-info {
+
     font-size: 11px;
     color: #aaaaaa;
     line-height: 1.4;

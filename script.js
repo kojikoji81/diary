@@ -249,7 +249,7 @@ function updateClock() {
 }
 
 /**
- * アクセスカウンター
+ * アクセスカウンター（純粋な訪問カウント表示のみ）
  */
 function initCounter() {
     const counterElement = document.getElementById("counter-display");
@@ -265,12 +265,6 @@ function initCounter() {
 
     const formattedCount = String(count).padStart(6, "0");
     counterElement.textContent = formattedCount;
-
-    if (count % 100 === 0) {
-        setTimeout(function() {
-            alert(`【祝！】あなたは ${count} 人目のキリ番訪問者です！\nキリ番ゲットおめでとうございます（笑）`);
-        }, 500);
-    }
 }
 
 /**
@@ -282,13 +276,13 @@ function initOmikuji() {
     if (!omikujiBtn || !resultEl) return;
 
     const fortunes = [
-        { rank: "超大吉 (大キリ番)", item: "10BASE-T LANケーブル", text: "今日はテレホタイムにISDNが最速で繋がります！" },
-        { rank: "大吉", item: "3.5インチフロッピーディスク", text: "お気に入りのサイトが更新されているかも！" },
+        { rank: "超大吉", item: "10BASE-T LANケーブル", text: "今日は最速の回線速度でネットサーフィンできます！" },
+        { rank: "大吉", item: "3.5インチフロッピーディスク", text: "今日のお買い物や作業が順調に進む予感！" },
         { rank: "中吉", item: "ボールマウス（裏の球体）", text: "良いことがある予感（笑）" },
-        { rank: "小吉", item: "CD-R 700MB", text: "Winampのスキン変更で気分転換がおすすめ！" },
-        { rank: "吉", item: "テレホンカード (50度数)", text: "キリ番を踏めるかもしれない運勢です。" },
-        { rank: "末吉", item: "ダイヤルアップ接続音", text: "夜更かししすぎて親に怒られないように注意！" },
-        { rank: "凶", item: "ブラウザクラッシャー（未遂）", text: "リンクの踏み間違いに注意！Alt+F4の準備を（爆）" }
+        { rank: "小吉", item: "CD-R 700MB", text: "好きな音楽を聴いてリフレッシュがおすすめ！" },
+        { rank: "吉", item: "テレホンカード (50度数)", text: "穏やかな一日を過ごせそうです。" },
+        { rank: "末吉", item: "ダイヤルアップ接続音", text: "夜更かししすぎに注意！" },
+        { rank: "凶", item: "ブラウザクラッシャー（未遂）", text: "タイポやミスに気をつけて（爆）" }
     ];
 
     omikujiBtn.addEventListener("click", function () {
@@ -297,12 +291,4 @@ function initOmikuji() {
                              `<span style="color:#00ffff;">ラッキーアイテム: ${picked.item}</span><br>` +
                              `<span style="color:#dddddd; font-size:11px;">${picked.text}</span>`;
     });
-}
-
-/**
- * キリ番報告
- */
-function reportKiriban() {
-    const currentCount = document.getElementById("counter-display") ? document.getElementById("counter-display").textContent : "001235";
-    alert(`【キリ番報告】\n現在のカウント: ${currentCount}\nキリ番おめでとうございます！`);
 }
