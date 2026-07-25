@@ -7,17 +7,7 @@ let currentCalendarDate = new Date(); // カレンダー表示用
 let selectedFilterDate = null;       // 選択された日付フィルター (YYYY-MM-DD)
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. リアルタイム時計の更新
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    // 2. アクセスカウンターの初期化・更新
-    initCounter();
-
-    // 3. おみくじ機能の初期化
-    initOmikuji();
-
-    // 4. posts.json から日記データを読み込んで描画 & カレンダー構築
+    // posts.json から日記データを読み込んで描画 & カレンダー構築
     loadDiaryPosts();
 });
 
@@ -225,70 +215,4 @@ function changeCalendarMonth(offset) {
 function escapeHtml(str) {
     if (!str) return "";
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-}
-
-/**
- * リアルタイム時計
- */
-function updateClock() {
-    const clockElement = document.getElementById("digital-clock");
-    if (!clockElement) return;
-
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const date = String(now.getDate()).padStart(2, "0");
-    const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
-    const day = dayNames[now.getDay()];
-
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
-
-    clockElement.textContent = `${year}/${month}/${date}(${day}) ${hours}:${minutes}:${seconds}`;
-}
-
-/**
- * アクセスカウンター（純粋な訪問カウント表示のみ）
- */
-function initCounter() {
-    const counterElement = document.getElementById("counter-display");
-    if (!counterElement) return;
-
-    let count = parseInt(localStorage.getItem("kojikoji81_diary_counter") || "1234");
-    
-    if (!sessionStorage.getItem("visited_session")) {
-        count += 1;
-        localStorage.setItem("kojikoji81_diary_counter", count.toString());
-        sessionStorage.setItem("visited_session", "true");
-    }
-
-    const formattedCount = String(count).padStart(6, "0");
-    counterElement.textContent = formattedCount;
-}
-
-/**
- * レトロおみくじ
- */
-function initOmikuji() {
-    const omikujiBtn = document.getElementById("omikuji-btn");
-    const resultEl = document.getElementById("omikuji-result");
-    if (!omikujiBtn || !resultEl) return;
-
-    const fortunes = [
-        { rank: "超大吉", item: "10BASE-T LANケーブル", text: "今日は最速の回線速度でネットサーフィンできます！" },
-        { rank: "大吉", item: "3.5インチフロッピーディスク", text: "今日のお買い物や作業が順調に進む予感！" },
-        { rank: "中吉", item: "ボールマウス（裏の球体）", text: "良いことがある予感（笑）" },
-        { rank: "小吉", item: "CD-R 700MB", text: "好きな音楽を聴いてリフレッシュがおすすめ！" },
-        { rank: "吉", item: "テレホンカード (50度数)", text: "穏やかな一日を過ごせそうです。" },
-        { rank: "末吉", item: "ダイヤルアップ接続音", text: "夜更かししすぎに注意！" },
-        { rank: "凶", item: "ブラウザクラッシャー（未遂）", text: "タイポやミスに気をつけて（爆）" }
-    ];
-
-    omikujiBtn.addEventListener("click", function () {
-        const picked = fortunes[Math.floor(Math.random() * fortunes.length)];
-        resultEl.innerHTML = `<span style="color:#ffff00; font-weight:bold;">【${picked.rank}】</span><br>` +
-                             `<span style="color:#00ffff;">ラッキーアイテム: ${picked.item}</span><br>` +
-                             `<span style="color:#dddddd; font-size:11px;">${picked.text}</span>`;
-    });
 }
