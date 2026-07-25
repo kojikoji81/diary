@@ -2,31 +2,28 @@
    2000年代初頭 個人テキストサイト / kojikoji81の日記 JavaScript
    ========================================================= */
 
-let allPosts = [];
+let postDatesList = [];              // 存在する記事の日付リスト (例: ["2026-07-25"])
 let currentCalendarDate = new Date(); // カレンダー表示用
 let selectedFilterDate = null;       // 選択された日付フィルター (YYYY-MM-DD)
 
 document.addEventListener("DOMContentLoaded", function () {
-    // posts.json から日記データを読み込んで描画 & カレンダー構築
+    // posts/index.json から日付一覧を読み込んで描画 & カレンダー構築
     loadDiaryPosts();
 });
 
 /**
- * posts.json から日記データを読み込んで描画する
+ * posts/index.json から日付一覧を取得し、記事を描画する
  */
 function loadDiaryPosts() {
-    const container = document.getElementById("diary-posts-container");
-    if (!container) return;
-
-    fetch("posts.json?t=" + new Date().getTime()) // キャッシュ対策
+    fetch("posts/index.json?t=" + new Date().getTime()) // キャッシュ対策
         .then(response => {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
             }
             return response.json();
         })
-        .then(posts => {
-            allPosts = Array.isArray(posts) ? posts : [];
+        .then(dates => {
+            postDatesList = Array.isArray(dates) ? dates : [];
             
             // カレンダーを生成
             renderCalendar();
@@ -35,34 +32,37 @@ function loadDiaryPosts() {
             renderDiaryPosts();
         })
         .catch(err => {
-            console.error("日記の読み込みに失敗しました:", err);
+            console.error("記事一覧の読み込みに失敗しました:", err);
+            const container = document.getElementById("diary-posts-container");
+            if (container) {
+                container.innerHTML = '<div style="color:#aaaaaa; padding:20px 10px; text-align:center;">記事データを読み込めませんでした。</div>';
+            }
         });
 }
 
 /**
- * 日記エントリーの描画（フィルター適用対応）
+ * 日記エントリーの描画（日付個別JSON fetch）
  */
 function renderDiaryPosts() {
     const container = document.getElementById("diary-posts-container");
     if (!container) return;
 
-    let displayPosts = allPosts;
-
-    if (selectedFilterDate) {
-        displayPosts = allPosts.filter(p => p.date === selectedFilterDate);
-    }
+    // 表示対象の日付リスト（選択されていればその1日、未選択なら全件降順）
+    let targetDates = selectedFilterDate 
+        ? postDatesList.filter(d => d === selectedFilterDate)
+        : [...postDatesList].reverse(); // 新しい日付順
 
     let filterBarHtml = "";
     if (selectedFilterDate) {
         filterBarHtml = `
             <div class="filter-info-bar">
-                <span>📅 <strong>${selectedFilterDate}</strong> の日記 (${displayPosts.length}件)</span>
+                <span>📅 <strong>${selectedFilterDate}</strong> の日記</span>
                 <button class="reset-filter-btn" onclick="resetDiaryFilter()">全記事を表示</button>
             </div>
         `;
     }
 
-    if (displayPosts.length === 0) {
+    if (targetDates.length === 0) {
         container.innerHTML = filterBarHtml + `
             <div style="color:#aaaaaa; padding:20px 10px; text-align:center; border:1px dashed #444;">
                 ${selectedFilterDate ? `「${selectedFilterDate}」の日記はありません。` : '記事がまだありません。'}
@@ -71,29 +71,49 @@ function renderDiaryPosts() {
         return;
     }
 
-    let html = filterBarHtml;
-    displayPosts.forEach(post => {
-        const paragraphs = Array.isArray(post.content) 
-            ? post.content.map(p => `<p>${p}</p>`).join("")
-            : `<p>${post.content}</p>`;
+    // 各日付の posts/{date}.json を並列 fetch
+    const fetchPromises = targetDates.map(date => 
+        fetch(`posts/${date}.json?t=` + new Date().getTime())
+            .then(res => res.ok ? res.json() : null)
+            .catch(() => null)
+    );
 
-        const tagHtml = post.tag ? `<span class="entry-tag">${post.tag}</span>` : '';
-        const displayDateStr = post.displayDate || post.date;
+    Promise.all(fetchPromises).then(posts => {
+        const validPosts = posts.filter(p => p !== null);
 
-        html += `
-        <div class="diary-entry">
-            <div class="entry-header">
-                <span class="entry-date-title">${escapeHtml(displayDateStr)} 「${escapeHtml(post.title)}」</span>
-                ${tagHtml}
+        if (validPosts.length === 0) {
+            container.innerHTML = filterBarHtml + `
+                <div style="color:#aaaaaa; padding:20px 10px; text-align:center; border:1px dashed #444;">
+                    記事ファイルの読み込みに失敗しました。
+                </div>
+            `;
+            return;
+        }
+
+        let html = filterBarHtml;
+        validPosts.forEach(post => {
+            const paragraphs = Array.isArray(post.content) 
+                ? post.content.map(p => `<p>${p}</p>`).join("")
+                : `<p>${post.content}</p>`;
+
+            const tagHtml = post.tag ? `<span class="entry-tag">${post.tag}</span>` : '';
+            const displayDateStr = post.displayDate || post.date;
+
+            html += `
+            <div class="diary-entry">
+                <div class="entry-header">
+                    <span class="entry-date-title">${escapeHtml(displayDateStr)} 「${escapeHtml(post.title)}」</span>
+                    ${tagHtml}
+                </div>
+                <div class="entry-body">
+                    ${paragraphs}
+                </div>
             </div>
-            <div class="entry-body">
-                ${paragraphs}
-            </div>
-        </div>
-        `;
+            `;
+        });
+
+        container.innerHTML = html;
     });
-
-    container.innerHTML = html;
 }
 
 /**
@@ -129,7 +149,7 @@ function renderCalendar() {
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
     // 記事が存在する日付のSetを作成 (YYYY-MM-DD)
-    const postDatesSet = new Set(allPosts.map(p => p.date));
+    const postDatesSet = new Set(postDatesList);
 
     // 月の最初の日と最後の日を取得
     const firstDay = new Date(year, month, 1);
