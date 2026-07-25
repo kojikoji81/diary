@@ -264,35 +264,6 @@ ul.nav-list li {
     padding: 0 2px;
 }
 
-/* Web拍手コーナー */
-.web-clap-box {
-    border: 1px dashed #ff00ff;
-    background-color: #150015;
-    padding: 10px;
-    text-align: center;
-    margin: 20px 0;
-}
-
-.clap-btn {
-    background: linear-gradient(to bottom, #ff66cc, #cc0066);
-    color: #ffffff;
-    border: 2px outset #ff99dd;
-    padding: 4px 15px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-.clap-btn:active {
-    border-style: inset;
-}
-
-.clap-count {
-    color: #ffff00;
-    font-weight: bold;
-}
-
 /* バナーコーナー (88x31) */
 .banner-container {
     display: flex;

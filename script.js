@@ -10,13 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // 2. アクセスカウンターの初期化・更新
     initCounter();
 
-    // 3. Web拍手ボタンイベントの登録
-    initWebClap();
-
-    // 4. おみくじ機能の初期化
+    // 3. おみくじ機能の初期化
     initOmikuji();
 
-    // 5. posts.json から日記データを読み込んで動的描画
+    // 4. posts.json から日記データを読み込んで動的描画
     loadDiaryPosts();
 });
 
@@ -65,7 +62,6 @@ function loadDiaryPosts() {
         })
         .catch(err => {
             console.error("日記の読み込みに失敗しました:", err);
-            // フォールバック表示（直接HTMLにあるバックアップ用）
         });
 }
 
@@ -121,38 +117,9 @@ function initCounter() {
     // キリ番判定（100刻みなど）
     if (count % 100 === 0) {
         setTimeout(function() {
-            alert(`【祝！】あなたは ${count} 人目のキリ番訪問者です！\nWeb拍手からキリ番報告をお願いします（笑）`);
+            alert(`【祝！】あなたは ${count} 人目のキリ番訪問者です！\nキリ番ゲットおめでとうございます（笑）`);
         }, 500);
     }
-}
-
-/**
- * Web拍手機能
- */
-function initWebClap() {
-    const clapBtn = document.getElementById("clap-btn");
-    const clapCountEl = document.getElementById("clap-count-display");
-    if (!clapBtn || !clapCountEl) return;
-
-    let clapCount = parseInt(localStorage.getItem("web_clap_count") || "42");
-    clapCountEl.textContent = clapCount;
-
-    const clapMessages = [
-        "拍手ありがとうございます！更新の励みになります(*^^*)",
-        "パチパチありがとうございます！！これからも頑張ります（爆）",
-        "拍手感謝です！また遊びに来てくださいね〜！",
-        "ポチッと拍手ありがとうございます！(マテ",
-        "毎度おなじみ拍手感謝！ゆっくりしていってね！"
-    ];
-
-    clapBtn.addEventListener("click", function () {
-        clapCount++;
-        localStorage.setItem("web_clap_count", clapCount.toString());
-        clapCountEl.textContent = clapCount;
-
-        const randomMsg = clapMessages[Math.floor(Math.random() * clapMessages.length)];
-        alert(`【Web拍手】\n${randomMsg}\n\n(累計拍手メッセージ数: ${clapCount})`);
-    });
 }
 
 /**
@@ -166,7 +133,7 @@ function initOmikuji() {
     const fortunes = [
         { rank: "超大吉 (大キリ番)", item: "10BASE-T LANケーブル", text: "今日はテレホタイムにISDNが最速で繋がります！" },
         { rank: "大吉", item: "3.5インチフロッピーディスク", text: "お気に入りのサイトが更新されているかも！" },
-        { rank: "中吉", item: "ボールマウス（裏の球体）", text: "良いレスがもらえる予感（笑）" },
+        { rank: "中吉", item: "ボールマウス（裏の球体）", text: "良いことがある予感（笑）" },
         { rank: "小吉", item: "CD-R 700MB", text: "Winampのスキン変更で気分転換がおすすめ！" },
         { rank: "吉", item: "テレホンカード (50度数)", text: "キリ番を踏めるかもしれない運勢です。" },
         { rank: "末吉", item: "ダイヤルアップ接続音", text: "夜更かししすぎて親に怒られないように注意！" },
@@ -186,5 +153,5 @@ function initOmikuji() {
  */
 function reportKiriban() {
     const currentCount = document.getElementById("counter-display") ? document.getElementById("counter-display").textContent : "001235";
-    alert(`【キリ番報告】\n現在のカウント: ${currentCount}\nキリ番・前後賞をゲットされた方はWeb拍手よりご一報ください！`);
+    alert(`【キリ番報告】\n現在のカウント: ${currentCount}\nキリ番おめでとうございます！`);
 }

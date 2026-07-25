@@ -12,9 +12,10 @@
   - GitHub Pages 用の案内・構成
 - Gitリポジトリの初期化 (`git init`) および全ファイルのファーストコミット (`git commit`) を実行
 - サイトタイトルを「kojikoji81の日記」へ更新し、プロフィールや外部リンクを削除して純粋な日記サイトへとシンプル化
-- 日記エントリーを本日（2026/07/25）の1件のみに変更・Push完了
-- 新規リポジトリ `kojikoji81/diary` を GitHub 上に作成して全ファイルを Push
-- GitHub Pages を有効化（公開URL: https://kojikoji81.github.io/diary/）
+- 日記本文を `posts.json` で分離管理し、JavaScriptで自動読み込み・描画する仕組みへ改修
+- 手元で簡単に新しい日記データを作成できる投稿補助ツール [editor.html](file:///C:/Users/hirut/.gemini/antigravity/scratch/retro-diary/editor.html) を追加
+- GitHub リポジトリ `kojikoji81/diary` へ最新コードを Push 完了
+
 
 
 
