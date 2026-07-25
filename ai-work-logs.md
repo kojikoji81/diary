@@ -13,7 +13,9 @@
 - Gitリポジトリの初期化 (`git init`) および全ファイルのファーストコミット (`git commit`) を実行
 - サイトタイトルを「kojikoji81の日記」へ更新し、プロフィールや外部リンクを削除して純粋な日記サイトへとシンプル化
 - 日記本文を `posts.json` で分離管理し、JavaScriptで自動読み込み・描画する仕組みへ改修
+- Web拍手機能を完全に削除し、純粋な個人日記レイアウトへ変更・Push完了
 - 手元で簡単に新しい日記データを作成できる投稿補助ツール [editor.html](file:///C:/Users/hirut/.gemini/antigravity/scratch/retro-diary/editor.html) を追加
+
 - GitHub リポジトリ `kojikoji81/diary` へ最新コードを Push 完了
 
 

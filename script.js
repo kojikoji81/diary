@@ -2,6 +2,10 @@
    2000年代初頭 個人テキストサイト / kojikoji81の日記 JavaScript
    ========================================================= */
 
+let allPosts = [];
+let currentCalendarDate = new Date(); // カレンダー表示用
+let selectedFilterDate = null;       // 選択された日付フィルター (YYYY-MM-DD)
+
 document.addEventListener("DOMContentLoaded", function () {
     // 1. リアルタイム時計の更新
     updateClock();
@@ -13,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 3. おみくじ機能の初期化
     initOmikuji();
 
-    // 4. posts.json から日記データを読み込んで動的描画
+    // 4. posts.json から日記データを読み込んで描画 & カレンダー構築
     loadDiaryPosts();
 });
 
@@ -32,33 +36,13 @@ function loadDiaryPosts() {
             return response.json();
         })
         .then(posts => {
-            if (!Array.isArray(posts) || posts.length === 0) {
-                container.innerHTML = '<div style="color:#aaaaaa; padding:10px;">記事がまだありません。</div>';
-                return;
-            }
+            allPosts = Array.isArray(posts) ? posts : [];
+            
+            // カレンダーを生成
+            renderCalendar();
 
-            let html = "";
-            posts.forEach(post => {
-                const paragraphs = Array.isArray(post.content) 
-                    ? post.content.map(p => `<p>${p}</p>`).join("")
-                    : `<p>${post.content}</p>`;
-
-                const tagHtml = post.tag ? `<span class="entry-tag">${post.tag}</span>` : '';
-
-                html += `
-                <div class="diary-entry">
-                    <div class="entry-header">
-                        <span class="entry-date-title">${escapeHtml(post.date)} 「${escapeHtml(post.title)}」</span>
-                        ${tagHtml}
-                    </div>
-                    <div class="entry-body">
-                        ${paragraphs}
-                    </div>
-                </div>
-                `;
-            });
-
-            container.innerHTML = html;
+            // 日記一覧を描画
+            renderDiaryPosts();
         })
         .catch(err => {
             console.error("日記の読み込みに失敗しました:", err);
@@ -66,7 +50,177 @@ function loadDiaryPosts() {
 }
 
 /**
- * エスケープ処理（安全のため。HTMLタグは許可するため簡易的処理）
+ * 日記エントリーの描画（フィルター適用対応）
+ */
+function renderDiaryPosts() {
+    const container = document.getElementById("diary-posts-container");
+    if (!container) return;
+
+    let displayPosts = allPosts;
+
+    if (selectedFilterDate) {
+        displayPosts = allPosts.filter(p => p.date === selectedFilterDate);
+    }
+
+    let filterBarHtml = "";
+    if (selectedFilterDate) {
+        filterBarHtml = `
+            <div class="filter-info-bar">
+                <span>📅 <strong>${selectedFilterDate}</strong> の日記 (${displayPosts.length}件)</span>
+                <button class="reset-filter-btn" onclick="resetDiaryFilter()">全記事を表示</button>
+            </div>
+        `;
+    }
+
+    if (displayPosts.length === 0) {
+        container.innerHTML = filterBarHtml + `
+            <div style="color:#aaaaaa; padding:20px 10px; text-align:center; border:1px dashed #444;">
+                ${selectedFilterDate ? `「${selectedFilterDate}」の日記はありません。` : '記事がまだありません。'}
+            </div>
+        `;
+        return;
+    }
+
+    let html = filterBarHtml;
+    displayPosts.forEach(post => {
+        const paragraphs = Array.isArray(post.content) 
+            ? post.content.map(p => `<p>${p}</p>`).join("")
+            : `<p>${post.content}</p>`;
+
+        const tagHtml = post.tag ? `<span class="entry-tag">${post.tag}</span>` : '';
+        const displayDateStr = post.displayDate || post.date;
+
+        html += `
+        <div class="diary-entry">
+            <div class="entry-header">
+                <span class="entry-date-title">${escapeHtml(displayDateStr)} 「${escapeHtml(post.title)}」</span>
+                ${tagHtml}
+            </div>
+            <div class="entry-body">
+                ${paragraphs}
+            </div>
+        </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+/**
+ * 日付選択によるフィルター
+ */
+function filterDiaryByDate(dateStr) {
+    selectedFilterDate = dateStr;
+    renderCalendar();
+    renderDiaryPosts();
+}
+
+/**
+ * フィルター解除（全件表示）
+ */
+function resetDiaryFilter() {
+    selectedFilterDate = null;
+    renderCalendar();
+    renderDiaryPosts();
+}
+
+/**
+ * アメブロ風カレンダーの描画
+ */
+function renderCalendar() {
+    const widgetContainer = document.getElementById("calendar-widget");
+    if (!widgetContainer) return;
+
+    const year = currentCalendarDate.getFullYear();
+    const month = currentCalendarDate.getMonth(); // 0-11
+
+    // 今日の日付を取得
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+    // 記事が存在する日付のSetを作成 (YYYY-MM-DD)
+    const postDatesSet = new Set(allPosts.map(p => p.date));
+
+    // 月の最初の日と最後の日を取得
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+
+    const firstDayOfWeek = firstDay.getDay(); // 0:日, 1:月...
+    const totalDays = lastDay.getDate();
+
+    let html = `
+        <div class="calendar-header">
+            <button class="calendar-nav-btn" onclick="changeCalendarMonth(-1)">&lt; 前月</button>
+            <span>${year}年 ${month + 1}月</span>
+            <button class="calendar-nav-btn" onclick="changeCalendarMonth(1)">翌月 &gt;</button>
+        </div>
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th class="sun">日</th>
+                    <th>月</th>
+                    <th>火</th>
+                    <th>水</th>
+                    <th>木</th>
+                    <th>金</th>
+                    <th class="sat">土</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    let dayCounter = 1;
+    const totalRows = Math.ceil((firstDayOfWeek + totalDays) / 7);
+
+    for (let r = 0; r < totalRows; r++) {
+        html += "<tr>";
+        for (let c = 0; c < 7; c++) {
+            if ((r === 0 && c < firstDayOfWeek) || dayCounter > totalDays) {
+                html += "<td></td>";
+            } else {
+                const dateNumStr = String(dayCounter).padStart(2, "0");
+                const monthNumStr = String(month + 1).padStart(2, "0");
+                const formattedDate = `${year}-${monthNumStr}-${dateNumStr}`;
+
+                const hasPost = postDatesSet.has(formattedDate);
+                const isSelected = selectedFilterDate === formattedDate;
+                const isToday = todayStr === formattedDate;
+
+                let classes = [];
+                if (c === 0) classes.push("sun");
+                if (c === 6) classes.push("sat");
+                if (hasPost) classes.push("has-post");
+                if (isSelected) classes.push("selected-day");
+                if (isToday) classes.push("today-cell");
+
+                const classAttr = classes.length > 0 ? `class="${classes.join(" ")}"` : "";
+                const clickAttr = hasPost ? `onclick="filterDiaryByDate('${formattedDate}')"` : "";
+
+                html += `<td ${classAttr} ${clickAttr}>${dayCounter}</td>`;
+                dayCounter++;
+            }
+        }
+        html += "</tr>";
+    }
+
+    html += `
+            </tbody>
+        </table>
+    `;
+
+    widgetContainer.innerHTML = html;
+}
+
+/**
+ * 月の変更 (< 前月 / 翌月 >)
+ */
+function changeCalendarMonth(offset) {
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() + offset);
+    renderCalendar();
+}
+
+/**
+ * エスケープ処理
  */
 function escapeHtml(str) {
     if (!str) return "";
@@ -74,7 +228,7 @@ function escapeHtml(str) {
 }
 
 /**
- * リアルタイム時計（2000年代風フォーマット）
+ * リアルタイム時計
  */
 function updateClock() {
     const clockElement = document.getElementById("digital-clock");
@@ -95,7 +249,7 @@ function updateClock() {
 }
 
 /**
- * アクセスカウンター（localStorage を利用した訪問カウント）
+ * アクセスカウンター
  */
 function initCounter() {
     const counterElement = document.getElementById("counter-display");
@@ -103,18 +257,15 @@ function initCounter() {
 
     let count = parseInt(localStorage.getItem("kojikoji81_diary_counter") || "1234");
     
-    // セッションごとにカウントアップ（初回アクセス時）
     if (!sessionStorage.getItem("visited_session")) {
         count += 1;
         localStorage.setItem("kojikoji81_diary_counter", count.toString());
         sessionStorage.setItem("visited_session", "true");
     }
 
-    // 6桁0埋めで表示
     const formattedCount = String(count).padStart(6, "0");
     counterElement.textContent = formattedCount;
 
-    // キリ番判定（100刻みなど）
     if (count % 100 === 0) {
         setTimeout(function() {
             alert(`【祝！】あなたは ${count} 人目のキリ番訪問者です！\nキリ番ゲットおめでとうございます（笑）`);
@@ -123,7 +274,7 @@ function initCounter() {
 }
 
 /**
- * レトロおみくじ機能
+ * レトロおみくじ
  */
 function initOmikuji() {
     const omikujiBtn = document.getElementById("omikuji-btn");
@@ -149,7 +300,7 @@ function initOmikuji() {
 }
 
 /**
- * キリ番報告ボタン
+ * キリ番報告
  */
 function reportKiriban() {
     const currentCount = document.getElementById("counter-display") ? document.getElementById("counter-display").textContent : "001235";

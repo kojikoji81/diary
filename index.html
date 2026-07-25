@@ -45,9 +45,16 @@
                 <div class="side-box">
                     <div class="side-box-title">■ MENU</div>
                     <ul class="nav-list">
-                        <li><a href="#top">日記トップ</a></li>
+                        <li><a href="#top" onclick="resetDiaryFilter(); return false;">全記事表示</a></li>
                     </ul>
                 </div>
+
+                <!-- カレンダー -->
+                <div class="side-box">
+                    <div class="side-box-title">■ CALENDAR</div>
+                    <div id="calendar-widget"></div>
+                </div>
+
 
                 <!-- アクセスカウンター -->
                 <div class="side-box">

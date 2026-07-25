@@ -7,7 +7,7 @@
         body { background: #111; color: #eee; font-family: sans-serif; padding: 20px; font-size: 14px; }
         .box { max-width: 600px; margin: 0 auto; background: #222; padding: 20px; border: 1px solid #444; border-radius: 5px; }
         label { display: block; margin-top: 10px; color: #00ff00; font-weight: bold; }
-        input[type="text"], textarea { width: 100%; background: #000; color: #fff; border: 1px solid #555; padding: 8px; box-sizing: border-box; font-size: 14px; }
+        input[type="text"], input[type="date"], textarea { width: 100%; background: #000; color: #fff; border: 1px solid #555; padding: 8px; box-sizing: border-box; font-size: 14px; }
         textarea { height: 120px; }
         button { background: #0088ff; color: #fff; border: none; padding: 10px 20px; margin-top: 15px; cursor: pointer; font-weight: bold; border-radius: 3px; }
         button:hover { background: #0066cc; }
@@ -20,8 +20,8 @@
         <h2>✍️ kojikoji81の日記 エントリー作成ツール</h2>
         <p class="hint">入力後「JSONコードを生成」を押して、出力されたテキストを <code>posts.json</code> の先頭に追加してください。</p>
 
-        <label>日付 (例: 2026/07/26(日))</label>
-        <input type="text" id="input-date">
+        <label>日付選択</label>
+        <input type="date" id="input-date">
 
         <label>タイトル (例: 今日の出来事（笑）)</label>
         <input type="text" id="input-title">
@@ -35,7 +35,7 @@
         <button onclick="generateJson()">JSONコードを生成してコピー</button>
 
         <div id="output-container" style="display:none;">
-            <label>生成されたJSON（posts.jsonの [ のすぐ後ろに貼り付けてください）:</label>
+            <label>生成されたJSON（posts.jsonの [ の直後に貼り付けてください）:</label>
             <div id="output"></div>
         </div>
     </div>
@@ -43,25 +43,33 @@
     <script>
         // デフォルトで今日の日付を入力
         const now = new Date();
-        const days = ['日', '月', '火', '水', '木', '金', '土'];
-        document.getElementById('input-date').value = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}/${String(now.getDate()).padStart(2,'0')}（${days[now.getDay()]}）`;
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        document.getElementById('input-date').value = `${year}-${month}-${day}`;
 
         function generateJson() {
-            const date = document.getElementById('input-date').value;
+            const rawDate = document.getElementById('input-date').value; // YYYY-MM-DD
             const title = document.getElementById('input-title').value;
             const tag = document.getElementById('input-tag').value;
             const rawBody = document.getElementById('input-body').value;
 
-            if (!title || !rawBody) {
-                alert('タイトルと本文を入力してください');
+            if (!rawDate || !title || !rawBody) {
+                alert('日付、タイトル、本文を入力してください');
                 return;
             }
+
+            const parts = rawDate.split('-');
+            const d = new Date(parts[0], parts[1]-1, parts[2]);
+            const days = ['日', '月', '火', '水', '木', '金', '土'];
+            const displayDate = `${parts[0]}/${parts[1]}/${parts[2]}（${days[d.getDay()]}）`;
 
             const paragraphs = rawBody.split('\n\n').filter(p => p.trim() !== '');
 
             const newEntry = {
                 id: Date.now(),
-                date: date,
+                date: rawDate,
+                displayDate: displayDate,
                 title: title,
                 tag: tag,
                 content: paragraphs

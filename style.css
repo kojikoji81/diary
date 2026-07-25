@@ -150,6 +150,110 @@ td.content-cell {
     font-size: 12px;
 }
 
+/* アメブロ風レトロカレンダー */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: #ffff00;
+    font-weight: bold;
+}
+
+.calendar-nav-btn {
+    background: #111;
+    color: #00ffff;
+    border: 1px solid #444;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 1px 5px;
+}
+
+.calendar-nav-btn:hover {
+    background: #0088ff;
+    color: #fff;
+}
+
+table.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #444466;
+    background-color: #000;
+    font-size: 11px;
+}
+
+table.calendar-table th {
+    background-color: #111122;
+    border: 1px solid #333355;
+    padding: 3px 0;
+    text-align: center;
+    color: #aaaaaa;
+}
+
+table.calendar-table th.sun { color: #ff6666; }
+table.calendar-table th.sat { color: #66ccff; }
+
+table.calendar-table td {
+    border: 1px solid #222233;
+    text-align: center;
+    padding: 4px 0;
+    color: #666666;
+    height: 24px;
+}
+
+table.calendar-table td.sun { color: #ff8888; }
+table.calendar-table td.sat { color: #88ccff; }
+
+/* 記事が存在する日 */
+table.calendar-table td.has-post {
+    background-color: #003311;
+    color: #00ff00;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+table.calendar-table td.has-post:hover {
+    background-color: #006622;
+    color: #ffff00;
+}
+
+/* 選択中の日 */
+table.calendar-table td.selected-day {
+    background-color: #444400 !important;
+    color: #ffff00 !important;
+    border: 1px solid #ffff00 !important;
+    font-weight: bold;
+}
+
+/* 今日 */
+table.calendar-table td.today-cell {
+    border: 1px solid #00ffff !important;
+}
+
+.filter-info-bar {
+    background-color: #1a1a00;
+    border: 1px solid #ffff00;
+    color: #ffff00;
+    padding: 5px 10px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reset-filter-btn {
+    background: #333;
+    color: #fff;
+    border: 1px solid #666;
+    padding: 2px 6px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+
 /* ナビゲーションメニュー */
 ul.nav-list {
     list-style-type: square;
