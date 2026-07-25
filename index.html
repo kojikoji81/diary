@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~* Crimson Moon Diary - 避難所 *~</title>
+    <meta name="description" content="2000年代初頭の個人テキストサイト風日記コンテンツ">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- メインレイアウト用テーブル -->
+    <table class="main-layout" cellspacing="0" cellpadding="0">
+        
+        <!-- ヘッダー -->
+        <tr>
+            <td colspan="2" class="header-cell">
+                <div class="sub-title">~ Welcome to my small secret base ~</div>
+                <h1 class="site-title">◆◇ Crimson Moon Diary ◇◆</h1>
+                <div class="welcome-msg">
+                    ようこそ！ここは<font color="#ffff00">「ひろゆき/hiru」</font>の個人趣味＆日常日記サイトです。<br>
+                    当サイトはリンクフリーです。キリ番報告はBBSまたは拍手からどうぞ！<br>
+                    <font color="#ff66cc" size="1">【Since: 2026.07.25 / Last Update: 2026.07.25】</font>
+                </div>
+            </td>
+        </tr>
+
+        <!-- お知らせマーキー -->
+        <tr>
+            <td colspan="2">
+                <div class="marquee-container">
+                    <span class="marquee-text">
+                        ★ Welcome to Crimson Moon Diary! ★ サイト開設しました！相互リンク随時募集中♪ <s>（直リンク推奨!?）</s> キリ番報告もお待ちしております（爆）
+                    </span>
+                </div>
+            </td>
+        </tr>
+
+        <!-- メインコンテンツ ＆ サイドバー -->
+        <tr>
+            <!-- サイドバー (左側) -->
+            <td class="sidebar-cell">
+
+                <!-- ナビゲーション -->
+                <div class="side-box">
+                    <div class="side-box-title">■ MENU</div>
+                    <ul class="nav-list">
+                        <li><a href="#top">Top (Main)</a></li>
+                        <li><a href="#profile">Profile</a></li>
+                        <li><a href="#diary">Diary (日記)</a></li>
+                        <li><a href="#bbs" onclick="alert('BBS（掲示板）は現在メンテナンス中です（涙）'); return false;">BBS (掲示板)</a></li>
+                        <li><a href="#link">Link (相互)</a></li>
+                        <li><a href="#clap">Web拍手</a></li>
+                    </ul>
+                </div>
+
+                <!-- アクセスカウンター -->
+                <div class="side-box">
+                    <div class="side-box-title">■ COUNTER</div>
+                    <div class="counter-box">
+                        <div class="counter-digits" id="counter-display">001234</div>
+                        <div class="kiriban-info">
+                            [ 1000, 2000 キリ番 ]<br>
+                            <a href="#" onclick="reportKiriban(); return false;"><u>キリ番報告はこちら</u></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ステータス & 時計 -->
+                <div class="side-box">
+                    <div class="side-box-title">■ STATUS</div>
+                    <div class="status-info">
+                        <strong>NOW TIME:</strong><br>
+                        <span id="digital-clock" style="color: #00ff00; font-family: monospace;">2026/07/25(土) 00:00:00</span><br><br>
+                        <strong>♪ BGM:</strong><br>
+                        <marquee scrollamount="2" style="color: #00ffff; font-size: 11px;">鳥の詩 (MIDI Version).mid</marquee><br>
+                        <strong>Webmaster:</strong> hiru<br>
+                        <strong>Condition:</strong> 眠気 80% (笑)
+                    </div>
+                </div>
+
+                <!-- 今日の運勢 (おみくじ) -->
+                <div class="side-box">
+                    <div class="side-box-title">■ OMIKUJI</div>
+                    <div style="text-align: center; font-size: 11px;">
+                        今日の運勢を占ってみる？<br>
+                        <button id="omikuji-btn" style="margin-top: 5px; font-size: 11px; cursor: pointer;">占う！</button>
+                        <div id="omikuji-result" style="margin-top: 8px;"></div>
+                    </div>
+                </div>
+
+                <!-- バナーコーナー -->
+                <div class="side-box">
+                    <div class="side-box-title">■ BANNER (88x31)</div>
+                    <div style="font-size: 10px; color: #aaaaaa; text-align: center; margin-bottom: 4px;">
+                        当サイトは直リンク推奨です！
+                    </div>
+                    <div class="banner-container">
+                        <div class="dummy-banner">Crimson<br>Moon</div>
+                        <div class="dummy-banner" style="color:#ff66cc; border-color:#ff66cc;">TEXT<br>SITE</div>
+                    </div>
+                </div>
+
+            </td>
+
+            <!-- メインコンテンツ (右側) -->
+            <td class="content-cell">
+
+                <!-- プロフィール簡易表示 -->
+                <a name="profile"></a>
+                <div class="diary-entry" style="border-color: #555588;">
+                    <div class="entry-header" style="background-color: #1a1a33;">
+                        <span class="entry-date-title">★ Admin Profile</span>
+                        <span class="entry-tag">管理者</span>
+                    </div>
+                    <div class="entry-body">
+                        <strong>HN:</strong> hiru <s>（本名は秘密爆）</s><br>
+                        <strong>Like:</strong> テキストサイト巡り、MIDI音楽、深夜ラジオ、HTML手打ち<br>
+                        <strong>Environment:</strong> Windows XP / Internet Explorer 6.0 / ADSL 8Mbps<br>
+                        <strong>Comment:</strong> まったり日常や思ったことを書き連ねる個人日記です。踏み逃げ厳禁！（笑）
+                    </div>
+                </div>
+
+                <!-- 日記エントリー 1 -->
+                <a name="diary"></a>
+                <div class="diary-entry">
+                    <div class="entry-header">
+                        <span class="entry-date-title">2026/07/25（土）「サイトオープンしました！（爆）」</span>
+                        <span class="entry-tag">日記</span>
+                    </div>
+                    <div class="entry-body">
+                        <p>
+                            ついに個人Webサイト「Crimson Moon Diary」を公開しちゃいました！！<br>
+                            <s>（本当は先週公開する予定だったのは内緒）</s>
+                        </p>
+                        <p>
+                            最近はSNSとかが流行ってるみたいだけど、やっぱり自分でHTMLとCSSをカタカタ手打ちして作るホームページが一番落ち着くよね<span class="laugh">（笑）</span>。<br>
+                            テーブルレイアウトの1px枠線を再現するのに結構苦戦しました<span class="laugh">（マテ</span>
+                        </p>
+                        <p>
+                            これからは日常のしょうもないこととか、好きな音楽やゲームの話を中心に更新していく予定です。<br>
+                            <span class="highlight-yellow">キリ番（1000番、2000番…）を踏んだ方は、ぜひBBSか拍手で報告してくださいね！</span><br>
+                            同盟バナーとかもそのうち作ろうかな〜と思ってます。
+                        </p>
+                        <p>
+                            それでは、これから「Crimson Moon Diary」をよろしくお願いします！<br>
+                            <span class="small-whisper">（※Web拍手コメント返信は一番下にあります）</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 日記エントリー 2 -->
+                <div class="diary-entry">
+                    <div class="entry-header">
+                        <span class="entry-date-title">2026/07/20（月）「ブロードバンド開通と深夜の長電話（笑）」</span>
+                        <span class="entry-tag">雑記</span>
+                    </div>
+                    <div class="entry-body">
+                        <p>
+                            ついに我が家にも<span class="highlight-red">ADSL（光!?）</span>が導入されましたー！！パチパチパチ！<br>
+                            これでテレホタイム（23:00〜）を待たずにネットに繋ぎ放題です<span class="laugh">（爆）</span>。
+                        </p>
+                        <p>
+                            ダイヤルアップの「ピー・ヒョロヒョロ〜」っていうあの接続音が聞けなくなるのはちょっと寂しい気もするけど<s>（嘘）</s>、画像のダウンロードが速すぎて感動…！<br>
+                            WinampでMIDIファイルを流しながら、お気に入りのテキストサイトを巡回するのが最近のマイブームです。
+                        </p>
+                        <p>
+                            夜更かししすぎて明日の1限（or 仕事）が辛い予感…<span class="laugh">（死）</span>。<br>
+                            みんなも夜更かしのしすぎには気をつけようね！
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 日記エントリー 3 -->
+                <div class="diary-entry">
+                    <div class="entry-header">
+                        <span class="entry-date-title">2026/07/15（水）「テスト投稿＆相互リンク募集のお知らせ」</span>
+                        <span class="entry-tag">お知らせ</span>
+                    </div>
+                    <div class="entry-body">
+                        <p>
+                            サイトデザインを大幅リニューアル中。<br>
+                            黒背景にネオンカラーテキストの組み合わせって、やっぱり最高にクールだと思いませんか？<span class="laugh">（自画自賛）</span>
+                        </p>
+                        <p>
+                            当サイトは<strong style="color: #00ffff;">【完全リンクフリー】</strong>です！<br>
+                            同ジャンルの個人テキストサイト様、日記サイト様との相互リンクも大歓迎です。<br>
+                            リンクしていただける方は、BBSか拍手メッセージでサイト名とURLを教えてくださいね♪
+                        </p>
+                        <p>
+                            バナーサイズは88×31ピクセルでおねがいします！直リンクOKです！
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Web拍手エリア -->
+                <a name="clap"></a>
+                <div class="web-clap-box">
+                    <div style="font-weight: bold; color: #ff99ff; margin-bottom: 5px;">
+                        ★ Web Clap (Web拍手) ★
+                    </div>
+                    <div style="font-size: 11px; color: #cccccc; margin-bottom: 8px;">
+                        記事が面白かったらポチッと拍手を押してもらえると嬉しいです！<br>
+                        一言メッセージも送れます（*^^*)
+                    </div>
+                    <button class="clap-btn" id="clap-btn">👏 拍手をおくる！</button>
+                    <div style="margin-top: 6px; font-size: 11px;">
+                        現在の拍手総数: <span class="clap-count" id="clap-count-display">42</span> パチ
+                    </div>
+                </div>
+
+                <!-- 相互リンクエリア -->
+                <a name="link"></a>
+                <div class="diary-entry" style="border-color: #336633;">
+                    <div class="entry-header" style="background-color: #112211;">
+                        <span class="entry-date-title">■ Recommended Links (相互リンク様)</span>
+                        <span class="entry-tag">Link</span>
+                    </div>
+                    <div class="entry-body">
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li><a href="#" onclick="alert('外部サイトへのリンクダミーです'); return false;">蒼月夜のラビリンス</a> - 尊敬するテキストサイト様！文章力が神。</li>
+                            <li><a href="#" onclick="alert('外部サイトへのリンクダミーです'); return false;">Midnight Cafe MIDI館</a> - 素敵なBGM素材が盛りだくさんです。</li>
+                            <li><a href="#" onclick="alert('外部サイトへのリンクダミーです'); return false;">電脳同盟 -Cyber Union-</a> - 相互リンクでお世話になってます！</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+
+        <!-- フッター -->
+        <tr>
+            <td colspan="2" class="footer-cell">
+                Copyright (C) 2026 Crimson Moon Diary All Rights Reserved.<br>
+                <span style="font-size: 10px; color: #666666;">
+                    [ Recommended Browser: Internet Explorer 6.0+ / Resolution: 800x600 pixels or higher / Font Size: Medium ]
+                </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
