@@ -10,3 +10,9 @@
   - アクセスカウンター（数字画像風CSS/JSカウントアップ）
   - Web拍手機能、リアルタイム時計、おみくじ機能
   - GitHub Pages 用の案内・構成
+- Gitリポジトリの初期化 (`git init`) および全ファイルのファーストコミット (`git commit`) を実行
+- GitHub CLI 認証を経て GitHub リポジトリ `kojikoji81/retro-diary` を作成し Push 完了
+- GitHub Pages を有効化（公開URL: https://kojikoji81.github.io/retro-diary/）
+
+
+

@@ -45,14 +45,15 @@ function initCounter() {
     const counterElement = document.getElementById("counter-display");
     if (!counterElement) return;
 
-    let count = parseInt(localStorage.getItem("retro_site_counter") || "1234");
+    let count = parseInt(localStorage.getItem("kojikoji81_diary_counter") || "1234");
     
     // セッションごとにカウントアップ（初回アクセス時）
     if (!sessionStorage.getItem("visited_session")) {
         count += 1;
-        localStorage.setItem("retro_site_counter", count.toString());
+        localStorage.setItem("kojikoji81_diary_counter", count.toString());
         sessionStorage.setItem("visited_session", "true");
     }
+
 
     // 6桁0埋めで表示
     const formattedCount = String(count).padStart(6, "0");
