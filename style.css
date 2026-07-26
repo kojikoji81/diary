@@ -1,5 +1,5 @@
 /* =========================================================
-   2000年代初頭 個人テキストサイト / ポートフォリオ スタイルシート
+   2000年代初頭 個人テキストサイト / kojikoji81の日記・ポートフォリオ スタイルシート
    ========================================================= */
 
 /* 基本設定 */
@@ -17,27 +17,6 @@ body {
     padding: 15px;
     background-image: radial-gradient(#1a1a2e 1px, transparent 0);
     background-size: 8px 8px; /* 薄いドット背景 */
-}
-
-/* リンクスタイル */
-a:link {
-    color: #00ffff;
-    text-decoration: underline;
-}
-
-a:visited {
-    color: #cc99ff;
-    text-decoration: underline;
-}
-
-a:hover {
-    color: #ffff00;
-    background-color: #0000ff;
-    text-decoration: none;
-}
-
-a:active {
-    color: #ff0000;
 }
 
 /* 全体コンテナテーブル */
@@ -65,45 +44,6 @@ h1.site-title {
     font-weight: bold;
     letter-spacing: 2px;
     text-shadow: 0 0 5px #00ff66;
-}
-
-.sub-title {
-    font-size: 11px;
-    color: #ff66cc;
-    margin-bottom: 8px;
-}
-
-.welcome-msg {
-    font-size: 12px;
-    color: #ffffff;
-    border: 1px dashed #666666;
-    padding: 6px;
-    margin: 10px auto;
-    width: 90%;
-    background-color: #000000;
-}
-
-/* マーキー（流れる文字） */
-.marquee-container {
-    background-color: #000033;
-    border-top: 1px solid #333366;
-    border-bottom: 1px solid #333366;
-    color: #ffff00;
-    font-size: 11px;
-    padding: 3px 0;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.marquee-text {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee-anim 18s linear infinite;
-}
-
-@keyframes marquee-anim {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
 }
 
 /* レイアウトセル */
@@ -150,65 +90,166 @@ ul.nav-list li {
     margin-bottom: 6px;
 }
 
-/* メインコンテンツボックス */
-.section-box {
+ul.nav-list a {
+    color: #00ffff;
+    text-decoration: underline;
+}
+
+ul.nav-list a:hover {
+    color: #ffff00;
+    background: #0000ff;
+    text-decoration: none;
+}
+
+/* アメブロ風レトロカレンダー */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: #ffff00;
+    font-weight: bold;
+}
+
+.calendar-nav-btn {
+    background: #111;
+    color: #00ffff;
+    border: 1px solid #444;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 1px 5px;
+}
+
+.calendar-nav-btn:hover {
+    background: #0088ff;
+    color: #fff;
+}
+
+table.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #444466;
+    background-color: #000;
+    font-size: 11px;
+}
+
+table.calendar-table th {
+    background-color: #111122;
+    border: 1px solid #333355;
+    padding: 3px 0;
+    text-align: center;
+    color: #aaaaaa;
+}
+
+table.calendar-table th.sun { color: #ff6666; }
+table.calendar-table th.sat { color: #66ccff; }
+
+table.calendar-table td {
+    border: 1px solid #222233;
+    text-align: center;
+    padding: 4px 0;
+    color: #666666;
+    height: 24px;
+}
+
+table.calendar-table td.sun { color: #ff8888; }
+table.calendar-table td.sat { color: #88ccff; }
+
+/* 記事が存在する日 */
+table.calendar-table td.has-post {
+    background-color: #003311;
+    color: #00ff00;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+table.calendar-table td.has-post:hover {
+    background-color: #006622;
+    color: #ffff00;
+}
+
+/* 選択中の日 */
+table.calendar-table td.selected-day {
+    background-color: #444400 !important;
+    color: #ffff00 !important;
+    border: 1px solid #ffff00 !important;
+    font-weight: bold;
+}
+
+/* 今日 */
+table.calendar-table td.today-cell {
+    border: 1px solid #00ffff !important;
+}
+
+.filter-info-bar {
+    background-color: #1a1a00;
+    border: 1px solid #ffff00;
+    color: #ffff00;
+    padding: 5px 10px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reset-filter-btn {
+    background: #333;
+    color: #fff;
+    border: 1px solid #666;
+    padding: 2px 6px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+/* メインコンテンツ - 日記・コンテンツエントリー */
+.diary-entry {
     border: 1px solid #334455;
     background-color: #07070d;
     margin-bottom: 20px;
     padding: 0;
 }
 
-.section-header {
+.entry-header {
     background-color: #151d2a;
     border-bottom: 1px solid #334455;
     padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.entry-date-title {
     font-weight: bold;
     color: #ffff66;
     font-size: 13px;
 }
 
-.section-body {
+.entry-tag {
+    font-size: 10px;
+    background-color: #331133;
+    color: #ff99ff;
+    border: 1px solid #883388;
+    padding: 1px 5px;
+}
+
+.entry-body {
     padding: 12px;
     font-size: 12px;
     color: #dddddd;
 }
 
-.retro-btn {
-    display: inline-block;
-    background: linear-gradient(to bottom, #0088ff, #0044aa);
-    color: #ffffff !important;
-    border: 2px outset #66b2ff;
-    padding: 5px 15px;
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none !important;
-    cursor: pointer;
+.entry-body p {
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
-.retro-btn:active {
-    border-style: inset;
-}
-
-/* プロフィールテーブル */
-table.profile-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #333344;
-}
-
-table.profile-table th {
-    background: #111122;
-    border: 1px solid #333344;
-    color: #00ffff;
-    padding: 6px;
-    width: 30%;
-    text-align: left;
-}
-
-table.profile-table td {
-    border: 1px solid #333344;
-    padding: 6px;
-    color: #dddddd;
+/* 当時風のテキスト装飾 */
+.laugh {
+    color: #888888;
+    font-size: 11px;
 }
 
 /* フッター */

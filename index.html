@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>◆◇ kojikoji81 Official Homepage ◇◆</title>
-    <meta name="description" content="kojikoji81の2000年代初頭風レトロポートフォリオサイト">
+    <title>kojikoji81のポートフォリオ</title>
+    <meta name="description" content="kojikoji81のポートフォリオ">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,131 +15,74 @@
         <!-- ヘッダー -->
         <tr>
             <td colspan="2" class="header-cell">
-                <div class="sub-title">~ Welcome to my personal homepage ~</div>
-                <h1 class="site-title">◆◇ kojikoji81 Official Homepage ◇◆</h1>
-                <div class="welcome-msg">
-                    ようこそ！<font color="#ffff00">kojikoji81</font>のポートフォリオ ＆ 個人ポータルサイトです。<br>
-                    当サイトは完全リンクフリーです。ゆっくりしていってね！<br>
-                    <font color="#ff66cc" size="1">【Since: 2026.07.25 / Last Update: 2026.07.26】</font>
-                </div>
-            </td>
-        </tr>
-
-        <!-- お知らせマーキー -->
-        <tr>
-            <td colspan="2">
-                <div class="marquee-container">
-                    <span class="marquee-text">
-                        ★ Welcome to kojikoji81 Portfolio! ★ サブコンテンツ「kojikoji81の日記」公開中！
-                    </span>
-                </div>
+                <h1 class="site-title">kojikoji81のポートフォリオ</h1>
             </td>
         </tr>
 
         <!-- メインコンテンツ ＆ サイドバー -->
         <tr>
-            <!-- サイドバー (左側) -->
+            <!-- サイドバー (左側: メニューとカレンダー) -->
             <td class="sidebar-cell">
 
                 <!-- ナビゲーション -->
                 <div class="side-box">
                     <div class="side-box-title">■ MENU</div>
                     <ul class="nav-list">
-                        <li><a href="#top">Top (Main)</a></li>
-                        <li><a href="#profile">Profile</a></li>
-                        <li><a href="#works">Works / Skills</a></li>
+                        <li><a href="#top">トップ</a></li>
                         <li><a href="diary/index.html"><strong>📖 日記 (Diary)</strong></a></li>
                     </ul>
                 </div>
 
-                <!-- サブコンテンツ -->
+                <!-- カレンダー -->
                 <div class="side-box">
-                    <div class="side-box-title">■ SUB CONTENTS</div>
-                    <div style="font-size: 11px; padding: 2px;">
-                        👉 <a href="diary/index.html"><font color="#00ff00"><u>kojikoji81の日記</u></font></a><br>
-                        <span style="color: #aaaaaa; font-size: 10px;">日々の思考と記憶の記録</span>
-                    </div>
-                </div>
-
-                <!-- ステータス -->
-                <div class="side-box">
-                    <div class="side-box-title">■ STATUS</div>
-                    <div style="font-size: 11px; color: #aaaaaa; line-height: 1.4;">
-                        <strong>Admin:</strong> kojikoji81<br>
-                        <strong>OS:</strong> Windows<br>
-                        <strong>Browser:</strong> IE 6.0 推奨(笑)
-                    </div>
+                    <div class="side-box-title">■ CALENDAR</div>
+                    <div id="calendar-widget"></div>
                 </div>
 
             </td>
 
-            <!-- メインコンテンツ (右側) -->
+            <!-- メインコンテンツ (右側: 日記と同じ枠デザイン) -->
             <td class="content-cell">
 
                 <a name="top"></a>
 
-                <!-- サブコンテンツ「日記」への大きな誘導枠 -->
-                <div class="section-box" style="border-color: #00ff66; background-color: #05150a;">
-                    <div class="section-header" style="background-color: #0c2b14; color: #00ff00;">
-                        ★ MAIN SUB CONTENT / メインサブコンテンツ
+                <!-- メインサブコンテンツ：日記へのリンク枠 -->
+                <div class="diary-entry">
+                    <div class="entry-header">
+                        <span class="entry-date-title">📖 kojikoji81の日記 (Diary)</span>
+                        <span class="entry-tag">Main Content</span>
                     </div>
-                    <div class="section-body">
-                        <h3 style="color: #ffff00; margin-top: 0; font-size: 14px;">📖 kojikoji81の日記 (Diary)</h3>
-                        <p>
-                            日々の出来事や思ったことをつらつらと書き留めている個人日記です。<br>
-                            月別カレンダーから過去記事の閲覧が可能です。
+                    <div class="entry-body">
+                        <p>日々の出来事や思ったことをつらつらと書き留めている個人日記です。</p>
+                        <p>月別カレンダーから過去記事の検索・閲覧が可能です。</p>
+                        <p style="margin-top: 15px;">
+                            👉 <a href="diary/index.html" style="color: #00ffff; font-weight: bold; text-decoration: underline; font-size: 13px;"><u>kojikoji81の日記ページへ移動する</u></a>
                         </p>
-                        <div style="margin-top: 10px;">
-                            <a href="diary/index.html" class="retro-btn">👉 日記ページを開く (diary/index.html)</a>
-                        </div>
                     </div>
                 </div>
 
-                <!-- プロフィール -->
-                <a name="profile"></a>
-                <div class="section-box">
-                    <div class="section-header">
-                        ■ PROFILE (自己紹介)
+                <!-- プロフィール枠 -->
+                <div class="diary-entry">
+                    <div class="entry-header">
+                        <span class="entry-date-title">Profile (自己紹介)</span>
+                        <span class="entry-tag">About</span>
                     </div>
-                    <div class="section-body">
-                        <table class="profile-table">
-                            <tr>
-                                <th>Handle Name</th>
-                                <td>kojikoji81</td>
-                            </tr>
-                            <tr>
-                                <th>About</th>
-                                <td>Web制作や個人開発を行っている個人クリエイターです。</td>
-                            </tr>
-                            <tr>
-                                <th>Like</th>
-                                <td>テキストサイト、HTML手打ち、レトロデザイン、シンプル構成</td>
-                            </tr>
-                        </table>
+                    <div class="entry-body">
+                        <p><strong>Handle Name:</strong> kojikoji81</p>
+                        <p><strong>About:</strong> Web制作や個人開発を行っている個人クリエイターです。</p>
+                        <p><strong>Environment:</strong> Windows / HTML / CSS / JavaScript</p>
                     </div>
                 </div>
 
-                <!-- 制作物 & スキル -->
-                <a name="works"></a>
-                <div class="section-box">
-                    <div class="section-header">
-                        ■ WORKS & SKILLS (制作物・スキル)
+                <!-- 制作物・スキル枠 -->
+                <div class="diary-entry">
+                    <div class="entry-header">
+                        <span class="entry-date-title">Works & Skills (制作物・スキル)</span>
+                        <span class="entry-tag">Works</span>
                     </div>
-                    <div class="section-body">
-                        <strong>【開発スキル / 環境】</strong>
-                        <ul style="padding-left: 20px; margin-top: 5px; margin-bottom: 15px;">
-                            <li>HTML5 / CSS3 / JavaScript (Vanilla)</li>
-                            <li>Git / GitHub / GitHub Pages 静的配信</li>
-                            <li>軽量JSONデータ設計</li>
-                        </ul>
-
-                        <strong>【制作物・プロジェクト】</strong>
-                        <div style="border: 1px dashed #445566; padding: 8px; margin-top: 5px; background: #000;">
-                            <span style="color: #00ffff; font-weight: bold;">・kojikoji81の日記</span><br>
-                            <span style="color: #aaaaaa; font-size: 11px;">
-                                2000年代初頭の個人テキストサイト風に構築した日記システム。日付別JSONファイルによる手元管理・カレンダー連動検索に対応。
-                            </span>
-                        </div>
+                    <div class="entry-body">
+                        <p><strong>【スキル】</strong><br>HTML5 / CSS3 / JavaScript (Vanilla) / Git / GitHub Pages</p>
+                        <p style="margin-top: 10px;"><strong>【制作物】</strong><br>・<a href="diary/index.html" style="color:#00ffff;"><u>kojikoji81の日記</u></a> (カレンダー連動・日付別JSON管理日記システム)</p>
                     </div>
                 </div>
 
@@ -149,14 +92,12 @@
         <!-- フッター -->
         <tr>
             <td colspan="2" class="footer-cell">
-                Copyright (C) 2026 kojikoji81 Official Homepage All Rights Reserved.<br>
-                <span style="font-size: 10px; color: #666666;">
-                    [ Recommended Browser: Internet Explorer 6.0+ / Resolution: 800x600 pixels or higher ]
-                </span>
+                Copyright (C) 2026 kojikoji81 All Rights Reserved.
             </td>
         </tr>
 
     </table>
 
+    <script src="script.js"></script>
 </body>
 </html>
