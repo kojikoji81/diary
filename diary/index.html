@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kojikoji81の日記 | kojikoji81 Official Site</title>
+    <title>kojikoji81の日記 | Official Site</title>
     <meta name="description" content="kojikoji81の個人日記">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,34 +25,35 @@
 
         <!-- メインコンテンツ ＆ サイドバー -->
         <tr>
-            <!-- サイドバー (左側: 共通MENUとカレンダー) -->
+            <!-- サイドバー (左側: 主要ページ移動 & 日記カレンダー) -->
             <td class="sidebar-cell">
 
-                <!-- サイト共通ナビゲーション MENU -->
+                <!-- 主要ナビゲーション MENU (トップページと完全統一) -->
                 <div class="side-box">
                     <div class="side-box-title">■ MENU</div>
                     <ul class="nav-list">
-                        <li><a href="../index.html">🏠 ホーム (トップ)</a></li>
-                        <li><a href="../index.html#profile">👤 自己紹介</a></li>
-                        <li><a href="../index.html#skills">💻 技術スタック</a></li>
-                        <li><a href="../index.html#experience">📁 実務経験・実績</a></li>
-                        <li class="active-menu"><a href="#top" onclick="resetDiaryFilter(); return false;">📖 日記 (全件表示)</a></li>
+                        <li><a href="../index.html">🏠 トップ (ポートフォリオ)</a></li>
+                        <li class="active-menu"><a href="#top" onclick="resetDiaryFilter(); return false;"><strong>📖 kojikoji81の日記</strong></a></li>
                     </ul>
                 </div>
 
-                <!-- カレンダー -->
+                <!-- 日記カレンダー -->
                 <div class="side-box">
-                    <div class="side-box-title">■ CALENDAR</div>
+                    <div class="side-box-title">■ DIARY CALENDAR</div>
+                    <div style="font-size: 10px; color: #aaaaaa; margin-bottom: 5px; text-align: center;">
+                        緑色の日付クリックで日記選択
+                    </div>
                     <div id="calendar-widget"></div>
                 </div>
 
             </td>
 
-            <!-- メインコンテンツ (右側: 日記一覧) -->
+            <!-- メインコンテンツ (右側: 日記記事一覧) -->
             <td class="content-cell">
 
                 <a name="top"></a>
-                <!-- 動的描画用コンテナ -->
+
+                <!-- 動的日記エントリー描画用コンテナ -->
                 <div id="diary-posts-container">
                     <!-- JS読み込み前のデフォルトフォールバック表示 -->
                     <div class="diary-entry">

@@ -1,7 +1,3 @@
-/* =========================================================
-   2000年代初頭 個人テキストサイト / kojikoji81の日記・ポートフォリオ スタイルシート
-   ========================================================= */
-
 /* 基本設定 */
 * {
     box-sizing: border-box;
@@ -23,18 +19,21 @@ body {
     background-size: 8px 8px; /* 薄いドット背景 */
 }
 
-
 /* 全体コンテナテーブル */
 table.main-layout {
     width: 820px;
     margin: 0 auto;
-    border-collapse: collapse;
     border: 1px solid #00ff66;
     background-color: #0c0c12;
     box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
 }
 
-/* ヘッダーエリア */
+/* リンク共通スタイル */
+a:link { color: #00ffff; text-decoration: underline; }
+a:visited { color: #cc99ff; text-decoration: underline; }
+a:hover { color: #ffff00; background-color: #0000ff; text-decoration: none; }
+
+/* ヘッダー */
 td.header-cell {
     border-bottom: 1px solid #00ff66;
     background-color: #121220;
@@ -69,13 +68,12 @@ h1.site-title {
     text-shadow: 0 0 5px #00ff66;
 }
 
-
 /* レイアウトセル */
 td.sidebar-cell {
     width: 200px;
     vertical-align: top;
     border-right: 1px solid #00ff66;
-    background-color: #0a0a10;
+    background-color: #080810;
     padding: 10px;
 }
 
@@ -85,12 +83,12 @@ td.content-cell {
     background-color: #0d0d14;
 }
 
-/* サイドバー枠組み */
+/* サイドバー ボックス */
 .side-box {
     border: 1px solid #444466;
     background-color: #05050a;
     margin-bottom: 15px;
-    padding: 8px;
+    padding: 2px;
 }
 
 .side-box-title {
@@ -98,25 +96,29 @@ td.content-cell {
     color: #00ffff;
     font-weight: bold;
     padding: 3px 6px;
-    margin: -8px -8px 8px -8px;
     border-bottom: 1px solid #444466;
-    font-size: 12px;
+    font-size: 11px;
 }
 
-/* ナビゲーションメニュー */
+/* サイドメニュー */
 ul.nav-list {
-    list-style-type: square;
-    padding-left: 20px;
-    margin: 5px 0;
+    list-style: none;
+    padding: 5px;
+    margin: 0;
 }
 
 ul.nav-list li {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    border-bottom: 1px dotted #222233;
+    padding-bottom: 3px;
 }
 
 ul.nav-list a {
+    display: block;
+    padding: 2px 4px;
     color: #00ffff;
-    text-decoration: underline;
+    text-decoration: none;
+    font-size: 11px;
 }
 
 ul.nav-list a:hover {
@@ -128,110 +130,6 @@ ul.nav-list a:hover {
 ul.nav-list li.active-menu a {
     color: #ffff00;
     font-weight: bold;
-}
-
-
-/* アメブロ風レトロカレンダー */
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-    font-size: 11px;
-    color: #ffff00;
-    font-weight: bold;
-}
-
-.calendar-nav-btn {
-    background: #111;
-    color: #00ffff;
-    border: 1px solid #444;
-    cursor: pointer;
-    font-size: 10px;
-    padding: 1px 5px;
-}
-
-.calendar-nav-btn:hover {
-    background: #0088ff;
-    color: #fff;
-}
-
-table.calendar-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #444466;
-    background-color: #000;
-    font-size: 11px;
-}
-
-table.calendar-table th {
-    background-color: #111122;
-    border: 1px solid #333355;
-    padding: 3px 0;
-    text-align: center;
-    color: #aaaaaa;
-}
-
-table.calendar-table th.sun { color: #ff6666; }
-table.calendar-table th.sat { color: #66ccff; }
-
-table.calendar-table td {
-    border: 1px solid #222233;
-    text-align: center;
-    padding: 4px 0;
-    color: #666666;
-    height: 24px;
-}
-
-table.calendar-table td.sun { color: #ff8888; }
-table.calendar-table td.sat { color: #88ccff; }
-
-/* 記事が存在する日 */
-table.calendar-table td.has-post {
-    background-color: #003311;
-    color: #00ff00;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-table.calendar-table td.has-post:hover {
-    background-color: #006622;
-    color: #ffff00;
-}
-
-/* 選択中の日 */
-table.calendar-table td.selected-day {
-    background-color: #444400 !important;
-    color: #ffff00 !important;
-    border: 1px solid #ffff00 !important;
-    font-weight: bold;
-}
-
-/* 今日 */
-table.calendar-table td.today-cell {
-    border: 1px solid #00ffff !important;
-}
-
-.filter-info-bar {
-    background-color: #1a1a00;
-    border: 1px solid #ffff00;
-    color: #ffff00;
-    padding: 5px 10px;
-    margin-bottom: 12px;
-    font-size: 11px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.reset-filter-btn {
-    background: #333;
-    color: #fff;
-    border: 1px solid #666;
-    padding: 2px 6px;
-    font-size: 10px;
-    cursor: pointer;
 }
 
 /* ページ内クイックジャンプナビゲーション */
@@ -292,11 +190,9 @@ table.calendar-table td.today-cell {
 
 /* メインコンテンツ - 日記・コンテンツエントリー */
 .diary-entry {
-
     border: 1px solid #334455;
     background-color: #07070d;
     margin-bottom: 20px;
-    padding: 0;
 }
 
 .entry-header {
@@ -311,32 +207,30 @@ table.calendar-table td.today-cell {
 .entry-date-title {
     font-weight: bold;
     color: #ffff66;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .entry-tag {
     font-size: 10px;
-    background-color: #331133;
-    color: #ff99ff;
-    border: 1px solid #883388;
+    background-color: #002200;
+    color: #00ff66;
+    border: 1px solid #00ff66;
     padding: 1px 5px;
 }
 
 .entry-body {
-    padding: 12px;
+    padding: 15px;
     font-size: 12px;
+    line-height: 1.7;
     color: #dddddd;
 }
 
 .entry-body p {
-    margin-top: 0;
     margin-bottom: 10px;
 }
 
-/* 当時風のテキスト装飾 */
-.laugh {
-    color: #888888;
-    font-size: 11px;
+.entry-body p:last-child {
+    margin-bottom: 0;
 }
 
 /* スキル詳細テーブル */
@@ -399,9 +293,102 @@ table.skill-detail-table td {
     margin-bottom: 4px;
 }
 
+/* カレンダー */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: #ffff00;
+    font-weight: bold;
+}
+
+.calendar-nav-btn {
+    background: #111;
+    color: #00ffff;
+    border: 1px solid #444;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 1px 5px;
+}
+
+table.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #444466;
+    background-color: #000;
+    font-size: 11px;
+}
+
+table.calendar-table th {
+    background-color: #111122;
+    border: 1px solid #333355;
+    padding: 3px 0;
+    text-align: center;
+    color: #aaaaaa;
+}
+
+table.calendar-table th.sun { color: #ff6666; }
+table.calendar-table th.sat { color: #66ccff; }
+
+table.calendar-table td {
+    border: 1px solid #222233;
+    text-align: center;
+    padding: 3px 0;
+    color: #666666;
+    height: 22px;
+}
+
+table.calendar-table td.sun { color: #ff8888; }
+table.calendar-table td.sat { color: #88ccff; }
+
+table.calendar-table td.has-post {
+    background-color: #003311;
+    color: #00ff00;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+table.calendar-table td.has-post:hover {
+    background-color: #006622;
+    color: #ffff00;
+}
+
+table.calendar-table td.selected-day {
+    background-color: #444400 !important;
+    color: #ffff00 !important;
+    border: 1px solid #ffff00 !important;
+}
+
+table.calendar-table td.today-cell {
+    border: 1px solid #00ffff !important;
+}
+
+.filter-info-bar {
+    background-color: #1a1a00;
+    border: 1px solid #ffff00;
+    color: #ffff00;
+    padding: 5px 10px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reset-filter-btn {
+    background: #333;
+    color: #fff;
+    border: 1px solid #666;
+    padding: 2px 6px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
 /* フッター */
 td.footer-cell {
-
     border-top: 1px solid #00ff66;
     background-color: #080810;
     padding: 10px;
@@ -410,19 +397,14 @@ td.footer-cell {
     color: #888888;
 }
 
-/* レスポンシブ調整 */
 @media (max-width: 840px) {
     table.main-layout {
         width: 100%;
     }
-    td.sidebar-cell {
+    
+    td.sidebar-cell, td.content-cell {
         display: block;
         width: 100%;
         border-right: none;
-        border-bottom: 1px solid #00ff66;
-    }
-    td.content-cell {
-        display: block;
-        width: 100%;
     }
 }
