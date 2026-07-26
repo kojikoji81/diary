@@ -3,66 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kojikoji81の日記</title>
-    <meta name="description" content="kojikoji81の個人日記">
+    <title>kojikoji81 | Portfolio</title>
+    <meta name="description" content="kojikoji81のポートフォリオサイト">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- メインレイアウト用テーブル -->
-    <table class="main-layout" cellspacing="0" cellpadding="0">
-        
-        <!-- ヘッダー -->
-        <tr>
-            <td colspan="2" class="header-cell">
-                <h1 class="site-title">kojikoji81の日記</h1>
-            </td>
-        </tr>
+    <!-- ヘッダーナビゲーション -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">kojikoji81</a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#contents">Contents</a>
+                <a href="diary/index.html" class="highlight-link">📖 日記 (Diary)</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-        <!-- メインコンテンツ ＆ サイドバー -->
-        <tr>
-            <!-- サイドバー (左側: カレンダーのみ) -->
-            <td class="sidebar-cell">
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero-container">
+            <span class="badge">Welcome to my portal</span>
+            <h1 class="hero-title">Hello, I'm <span class="gradient-text">kojikoji81</span>.</h1>
+            <p class="hero-description">
+                WEB制作や日々の思考を記録する個人ポートフォリオサイトです。<br>
+                メインコンテンツとしてレトロ風の個人日記を公開しています。
+            </p>
+            <div class="hero-buttons">
+                <a href="diary/index.html" class="btn btn-primary">📖 日記を読む (Diary) &rarr;</a>
+                <a href="#about" class="btn btn-secondary">About Me</a>
+            </div>
+        </div>
+    </section>
 
-                <!-- カレンダー -->
-                <div class="side-box">
-                    <div class="side-box-title">■ CALENDAR</div>
-                    <div id="calendar-widget"></div>
+    <!-- メインコンテンツセクション -->
+    <section id="contents" class="section">
+        <div class="container">
+            <h2 class="section-title">Sub Contents</h2>
+            <p class="section-subtitle">サイト内のコンテンツ一覧</p>
+
+            <div class="cards-grid">
+                <!-- 日記カード -->
+                <a href="diary/index.html" class="content-card featured-card">
+                    <div class="card-tag">Main Content</div>
+                    <div class="card-icon">📓</div>
+                    <h3 class="card-title">kojikoji81の日記</h3>
+                    <p class="card-desc">
+                        2000年代初頭のテキストサイト風デザインで綴る、日々の思いと記録。月別カレンダーから過去記事の閲覧が可能です。
+                    </p>
+                    <span class="card-link-text">日記ページを開く &rarr;</span>
+                </a>
+
+                <!-- 将来の制作物/プロジェクト用カード -->
+                <div class="content-card placeholder-card">
+                    <div class="card-tag">Portfolio</div>
+                    <div class="card-icon">💻</div>
+                    <h3 class="card-title">Works & Projects</h3>
+                    <p class="card-desc">
+                        今後制作・公開していくプロジェクトや実績を随時掲載予定です。
+                    </p>
+                    <span class="card-status">Coming Soon</span>
                 </div>
+            </div>
+        </div>
+    </section>
 
-            </td>
+    <!-- アバウトセクション -->
+    <section id="about" class="section alt-bg">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-box">
+                <h3>kojikoji81</h3>
+                <p>
+                    個人ポートフォリオ ＆ 日記ポータルサイトへようこそ。<br>
+                    マイペースに日記の更新やWebコンテンツの作成を行っています。
+                </p>
+            </div>
+        </div>
+    </section>
 
-            <!-- メインコンテンツ (右側: 動的にposts.jsonを描画) -->
-            <td class="content-cell">
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 kojikoji81. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-                <a name="top"></a>
-                <!-- 動的描画用コンテナ -->
-                <div id="diary-posts-container">
-                    <!-- JS読み込み前のデフォルトフォールバック表示 -->
-                    <div class="diary-entry">
-                        <div class="entry-header">
-                            <span class="entry-date-title">2026/07/25（土） 「母が亡くなったので初めてみました」</span>
-                            <span class="entry-tag">日記</span>
-                        </div>
-                        <div class="entry-body">
-                            <p>母が亡くなったので初めてみました。</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </td>
-        </tr>
-
-        <!-- フッター -->
-        <tr>
-            <td colspan="2" class="footer-cell">
-                Copyright (C) 2026 kojikoji81の日記 All Rights Reserved.
-            </td>
-        </tr>
-
-    </table>
-
-    <script src="script.js"></script>
 </body>
 </html>

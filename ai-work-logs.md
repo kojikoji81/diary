@@ -21,9 +21,10 @@
 - 日記データを単一ファイルから日付ごとの個別ファイル管理（`posts/YYYY-MM-DD.json`）へ変更・実装完了
 - 管理用インデックス `posts/index.json` を新設
 - 手元ツール `editor.html` に「日付別JSONファイルダウンロード機能」を追加
-- 変更内容を `kojikoji81/diary` に Push 完了
-
-
-
-
-
+- サイト全体の階層構造を「ポートフォリオ (`portfolio`)」＞「日記 (`diary`)」の親子構成へ拡張
+- モダンなポートフォリオページ `index.html` および `style.css` を新設
+- レトロ日記をサブディレクトリ `diary/` に配置移行
+- 新規リポジトリ `kojikoji81/portfolio` を GitHub 上に作成して全ファイルを Push
+- GitHub Pages を有効化：
+  - ポートフォリオ (トップ): https://kojikoji81.github.io/portfolio/
+  - 日記 (サブコンテンツ): https://kojikoji81.github.io/portfolio/

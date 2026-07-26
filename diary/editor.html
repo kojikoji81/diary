@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>【手元用】日付別日記エントリー作成ツール</title>
+    <style>
+        body { background: #111; color: #eee; font-family: sans-serif; padding: 20px; font-size: 14px; }
+        .box { max-width: 600px; margin: 0 auto; background: #222; padding: 20px; border: 1px solid #444; border-radius: 5px; }
+        label { display: block; margin-top: 12px; color: #00ff00; font-weight: bold; }
+        input[type="text"], input[type="date"], textarea { width: 100%; background: #000; color: #fff; border: 1px solid #555; padding: 8px; box-sizing: border-box; font-size: 14px; }
+        textarea { height: 120px; }
+        .btn-group { margin-top: 15px; display: flex; gap: 10px; }
+        button { background: #0088ff; color: #fff; border: none; padding: 10px 15px; cursor: pointer; font-weight: bold; border-radius: 3px; }
+        button:hover { background: #0066cc; }
+        button.download-btn { background: #00aa55; }
+        button.download-btn:hover { background: #008844; }
+        #output { background: #050505; color: #00ffff; font-family: monospace; padding: 10px; border: 1px solid #333; margin-top: 10px; white-space: pre-wrap; word-break: break-all; }
+        .hint { font-size: 12px; color: #aaa; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>✍️ kojikoji81の日記 日付別エントリー作成ツール</h2>
+        <p class="hint">入力後「JSONファイルを保存」を押すと、<code>diary/posts/YYYY-MM-DD.json</code> ファイルが作成されます。</p>
+
+        <label>1. 日付選択</label>
+        <input type="date" id="input-date">
+
+        <label>2. タイトル</label>
+        <input type="text" id="input-title">
+
+        <label>3. タグ (例: 日記)</label>
+        <input type="text" id="input-tag" value="日記">
+
+        <label>4. 本文 (段落ごとに改行してください)</label>
+        <textarea id="input-body" placeholder="1段落目...&#10;&#10;2段落目..."></textarea>
+
+        <div class="btn-group">
+            <button class="download-btn" onclick="downloadJsonFile()">💾 JSONファイルとして保存</button>
+            <button onclick="generateJsonText()">📋 テキストをプレビュー・コピー</button>
+        </div>
+
+        <div id="output-container" style="display:none; margin-top: 15px;">
+            <label>生成されたJSONプレビュー (<code>diary/posts/<span id="filename-preview">YYYY-MM-DD</span>.json</code> として保存):</label>
+            <div id="output"></div>
+            
+            <label style="color:#ffff00; margin-top:15px;">💡 <code>diary/posts/index.json</code> に追加する日付リスト:</label>
+            <div id="index-hint" style="background:#222; color:#ffff00; padding:8px; font-family:monospace;"></div>
+        </div>
+    </div>
+
+    <script>
+        // デフォルトで今日の日付を入力
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        document.getElementById('input-date').value = `${year}-${month}-${day}`;
+
+        function getEntryData() {
+            const rawDate = document.getElementById('input-date').value; // YYYY-MM-DD
+            const title = document.getElementById('input-title').value;
+            const tag = document.getElementById('input-tag').value;
+            const rawBody = document.getElementById('input-body').value;
+
+            if (!rawDate || !title || !rawBody) {
+                alert('日付、タイトル、本文を入力してください');
+                return null;
+            }
+
+            const parts = rawDate.split('-');
+            const d = new Date(parts[0], parts[1]-1, parts[2]);
+            const days = ['日', '月', '火', '水', '木', '金', '土'];
+            const displayDate = `${parts[0]}/${parts[1]}/${parts[2]}（${days[d.getDay()]}）`;
+
+            const paragraphs = rawBody.split('\n\n').filter(p => p.trim() !== '');
+
+            return {
+                rawDate: rawDate,
+                data: {
+                    date: rawDate,
+                    displayDate: displayDate,
+                    title: title,
+                    tag: tag,
+                    content: paragraphs
+                }
+            };
+        }
+
+        function generateJsonText() {
+            const entry = getEntryData();
+            if (!entry) return;
+
+            const jsonStr = JSON.stringify(entry.data, null, 2);
+            document.getElementById('filename-preview').textContent = entry.rawDate;
+            document.getElementById('output').textContent = jsonStr;
+            document.getElementById('index-hint').textContent = `"${entry.rawDate}" を diary/posts/index.json の配列に追加してください。`;
+            document.getElementById('output-container').style.display = 'block';
+        }
+
+        function downloadJsonFile() {
+            const entry = getEntryData();
+            if (!entry) return;
+
+            const jsonStr = JSON.stringify(entry.data, null, 2);
+            const blob = new Blob([jsonStr], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${entry.rawDate}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            generateJsonText();
+            alert(`「${entry.rawDate}.json」をダウンロードしました！\nこのファイルを diary/posts/ フォルダの中に配置してください。`);
+        }
+    </script>
+</body>
+</html>

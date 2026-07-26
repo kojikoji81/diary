@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kojikoji81の日記</title>
+    <meta name="description" content="kojikoji81の個人日記">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- メインレイアウト用テーブル -->
+    <table class="main-layout" cellspacing="0" cellpadding="0">
+        
+        <!-- ヘッダー -->
+        <tr>
+            <td colspan="2" class="header-cell">
+                <div style="text-align: left; margin-bottom: 5px;">
+                    <a href="../index.html" style="color: #00ffff; font-size: 11px; text-decoration: underline;">← Portfolio（ポートフォリオ）へ戻る</a>
+                </div>
+                <h1 class="site-title">kojikoji81の日記</h1>
+            </td>
+        </tr>
+
+        <!-- メインコンテンツ ＆ サイドバー -->
+        <tr>
+            <!-- サイドバー (左側: カレンダーのみ) -->
+            <td class="sidebar-cell">
+
+                <!-- カレンダー -->
+                <div class="side-box">
+                    <div class="side-box-title">■ CALENDAR</div>
+                    <div id="calendar-widget"></div>
+                </div>
+
+            </td>
+
+            <!-- メインコンテンツ (右側: 動的にposts.jsonを描画) -->
+            <td class="content-cell">
+
+                <a name="top"></a>
+                <!-- 動的描画用コンテナ -->
+                <div id="diary-posts-container">
+                    <!-- JS読み込み前のデフォルトフォールバック表示 -->
+                    <div class="diary-entry">
+                        <div class="entry-header">
+                            <span class="entry-date-title">2026/07/25（土） 「母が亡くなったので初めてみました」</span>
+                            <span class="entry-tag">日記</span>
+                        </div>
+                        <div class="entry-body">
+                            <p>母が亡くなったので初めてみました。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+
+        <!-- フッター -->
+        <tr>
+            <td colspan="2" class="footer-cell">
+                Copyright (C) 2026 kojikoji81の日記 All Rights Reserved.
+            </td>
+        </tr>
+
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
