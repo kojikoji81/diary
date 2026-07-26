@@ -37,6 +37,24 @@ td.header-cell {
     text-align: center;
 }
 
+/* パンくずナビゲーション */
+.breadcrumb-nav {
+    text-align: left;
+    font-size: 11px;
+    margin-bottom: 8px;
+    color: #aaaaaa;
+}
+
+.breadcrumb-nav a {
+    color: #00ffff;
+    text-decoration: underline;
+}
+
+.breadcrumb-nav .current {
+    color: #ffff00;
+    font-weight: bold;
+}
+
 h1.site-title {
     font-size: 20px;
     color: #00ff66;
@@ -45,6 +63,7 @@ h1.site-title {
     letter-spacing: 2px;
     text-shadow: 0 0 5px #00ff66;
 }
+
 
 /* レイアウトセル */
 td.sidebar-cell {
@@ -100,6 +119,12 @@ ul.nav-list a:hover {
     background: #0000ff;
     text-decoration: none;
 }
+
+ul.nav-list li.active-menu a {
+    color: #ffff00;
+    font-weight: bold;
+}
+
 
 /* アメブロ風レトロカレンダー */
 .calendar-header {

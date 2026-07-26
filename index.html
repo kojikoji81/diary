@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kojikoji81のポートフォリオ</title>
+    <title>kojikoji81のポートフォリオ | Official Site</title>
     <meta name="description" content="kojikoji81のポートフォリオ - データサイエンティスト / データアナリスト">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,23 +15,27 @@
         <!-- ヘッダー -->
         <tr>
             <td colspan="2" class="header-cell">
-                <h1 class="site-title">kojikoji81のポートフォリオ</h1>
+                <!-- サイト共通パンくずナビゲーション -->
+                <div class="breadcrumb-nav">
+                    <span class="current">🏠 HOME (ポートフォリオ)</span>
+                </div>
+                <h1 class="site-title"><a href="index.html" style="color: inherit; text-decoration: none;">kojikoji81のポートフォリオ</a></h1>
             </td>
         </tr>
 
         <!-- メインコンテンツ ＆ サイドバー -->
         <tr>
-            <!-- サイドバー (左側: メニューとカレンダー) -->
+            <!-- サイドバー (左側: 共通MENUとカレンダー) -->
             <td class="sidebar-cell">
 
-                <!-- ナビゲーション -->
+                <!-- サイト共通ナビゲーション MENU -->
                 <div class="side-box">
                     <div class="side-box-title">■ MENU</div>
                     <ul class="nav-list">
-                        <li><a href="#top">トップ</a></li>
-                        <li><a href="#profile">自己紹介</a></li>
-                        <li><a href="#skills">技術スタック</a></li>
-                        <li><a href="#experience">実務経験・実績</a></li>
+                        <li class="active-menu"><a href="#top">🏠 ホーム (トップ)</a></li>
+                        <li><a href="#profile">👤 自己紹介</a></li>
+                        <li><a href="#skills">💻 技術スタック</a></li>
+                        <li><a href="#experience">📁 実務経験・実績</a></li>
                         <li><a href="diary/index.html"><strong>📖 日記 (Diary)</strong></a></li>
                     </ul>
                 </div>
@@ -44,7 +48,7 @@
 
             </td>
 
-            <!-- メインコンテンツ (右側) -->
+            <!-- メインコンテンツ (右側: 各セクション) -->
             <td class="content-cell">
 
                 <a name="top"></a>
@@ -58,7 +62,7 @@
                     <div class="entry-body">
                         <p><strong>最新エントリー：</strong> 2026/07/25（土） 「母が亡くなったので初めてみました」</p>
                         <p style="margin-top: 10px;">
-                            👉 <a href="diary/index.html" style="color: #00ffff; font-weight: bold; text-decoration: underline;"><u>kojikoji81の日記ページを開く</u></a>
+                            👉 <a href="diary/index.html" style="color: #00ffff; font-weight: bold; text-decoration: underline; font-size: 13px;"><u>kojikoji81の日記ページを開く &rarr;</u></a>
                         </p>
                     </div>
                 </div>
@@ -98,7 +102,6 @@
                                 <th>BI & プラットフォーム</th>
                                 <td>Tableau, Dataiku, BigQuery, Snowflake, Metabase</td>
                             </tr>
-
                             <tr>
                                 <th>生成AI & LLM / NLP</th>
                                 <td>Vertex AI, OpenAI API, HuggingFace, LangChain, Claude Code, Dify, RAGシステム構築, AIエージェント構築</td>
@@ -107,7 +110,6 @@
                                 <th>クラウド & ETL</th>
                                 <td>GCP, AWS, trocco</td>
                             </tr>
-
                             <tr>
                                 <th>手法・領域</th>
                                 <td>需要予測モデル構築, 自然言語処理 (NLP), 感情分析, ログ解析, CV改善, データマネジメント, PM / プロジェクトマネジメント</td>

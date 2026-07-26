@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kojikoji81の日記</title>
+    <title>kojikoji81の日記 | kojikoji81 Official Site</title>
     <meta name="description" content="kojikoji81の個人日記">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,17 +15,30 @@
         <!-- ヘッダー -->
         <tr>
             <td colspan="2" class="header-cell">
-                <div style="text-align: left; margin-bottom: 5px;">
-                    <a href="../index.html" style="color: #00ffff; font-size: 11px; text-decoration: underline;">← Portfolio（ポートフォリオ）へ戻る</a>
+                <!-- サイト共通パンくずナビゲーション -->
+                <div class="breadcrumb-nav">
+                    <a href="../index.html">🏠 HOME (ポートフォリオ)</a> &gt; <span class="current">📖 kojikoji81の日記</span>
                 </div>
-                <h1 class="site-title">kojikoji81の日記</h1>
+                <h1 class="site-title"><a href="../index.html" style="color: inherit; text-decoration: none;">kojikoji81のポートフォリオ</a></h1>
             </td>
         </tr>
 
         <!-- メインコンテンツ ＆ サイドバー -->
         <tr>
-            <!-- サイドバー (左側: カレンダーのみ) -->
+            <!-- サイドバー (左側: 共通MENUとカレンダー) -->
             <td class="sidebar-cell">
+
+                <!-- サイト共通ナビゲーション MENU -->
+                <div class="side-box">
+                    <div class="side-box-title">■ MENU</div>
+                    <ul class="nav-list">
+                        <li><a href="../index.html">🏠 ホーム (トップ)</a></li>
+                        <li><a href="../index.html#profile">👤 自己紹介</a></li>
+                        <li><a href="../index.html#skills">💻 技術スタック</a></li>
+                        <li><a href="../index.html#experience">📁 実務経験・実績</a></li>
+                        <li class="active-menu"><a href="#top" onclick="resetDiaryFilter(); return false;">📖 日記 (全件表示)</a></li>
+                    </ul>
+                </div>
 
                 <!-- カレンダー -->
                 <div class="side-box">
@@ -35,7 +48,7 @@
 
             </td>
 
-            <!-- メインコンテンツ (右側: 動的にposts.jsonを描画) -->
+            <!-- メインコンテンツ (右側: 日記一覧) -->
             <td class="content-cell">
 
                 <a name="top"></a>
@@ -48,7 +61,7 @@
                             <span class="entry-tag">日記</span>
                         </div>
                         <div class="entry-body">
-                            <p>母が亡くなったので初めてみました。</p>
+                            <p>母が亡くなったので初めてみました。理由としては、何か残してみたかったから</p>
                         </div>
                     </div>
                 </div>
@@ -59,7 +72,7 @@
         <!-- フッター -->
         <tr>
             <td colspan="2" class="footer-cell">
-                Copyright (C) 2026 kojikoji81の日記 All Rights Reserved.
+                Copyright (C) 2026 kojikoji81 All Rights Reserved.
             </td>
         </tr>
 
