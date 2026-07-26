@@ -21,12 +21,9 @@
 - 日記データを単一ファイルから日付ごとの個別ファイル管理（`posts/YYYY-MM-DD.json`）へ変更・実装完了
 - 管理用インデックス `posts/index.json` を新設
 - 手元ツール `editor.html` に「日付別JSONファイルダウンロード機能」を追加
-- 職務経歴書PDFを参考に、ポートフォリオ（`index.html`）の「自己紹介」「技術スタック」「詳細実務経験」「対外発信・活動」を事細かに更新
-  - 個人情報（本名・所属企業名・クライアント企業名）はすべて匿名化
-  - Python/SQL/Tableau/Dataiku/Vertex AI/LangChain/Claude Code/Dify/BigQuery/Snowflake 等の技術スタックを明記
-  - アプリログ解析(CV改善)、需要予測モデル構築(商品ロス削減)、RAG・社内文書検索システム構築、BIダッシュボードPM業務のプロジェクト実績を詳細記述
-  - SIGNATEコンペ（RAG上位10%ランクイン）や技術ブログ執筆活動を反映
+- ポートフォリオ（`index.html`）から対外発信・活動セクション（SIGNATE・ブログ等）を完全削除し、実務スキル・実績に絞り込んだスリムな構成へ調整・Push完了
 - 変更内容を `kojikoji81/portfolio` に Push 完了
+
 
 
 
