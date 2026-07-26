@@ -31,6 +31,14 @@
 - トップページのメインエリア冒頭に横型目次バー (`INDEX: 📖 日記 | 👤 自己紹介 | 💻 技術スタック | 📁 実務経験`) を新設し、スムーズスクロール対応
 - サイドバーカレンダーの表記を `■ DIARY CALENDAR (緑色日付クリックで日記へ)` に明確化
 
+## 2026-07-26
+### 作業内容
+- 2026-07-26の日記投稿（タイトル「ゲリラ豪雨」）を作成
+  - `posts/2026-07-26.json` および `diary/posts/2026-07-26.json` を新規作成
+  - `posts/index.json` および `diary/posts/index.json` に "2026-07-26" を追記更新
+- Gitにコミットおよび `portfolio-origin` (GitHub Pages: kojikoji81/portfolio) へPush完了
+
+
 
 
 
