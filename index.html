@@ -25,15 +25,18 @@
 
         <!-- メインコンテンツ ＆ サイドバー -->
         <tr>
-            <!-- サイドバー (左側: 主要ページ移動 & 日記カレンダー) -->
+            <!-- サイドバー (左側: 共通MENU & 日記カレンダー) -->
             <td class="sidebar-cell">
 
-                <!-- 主要ナビゲーション MENU -->
+                <!-- サイト共通ナビゲーション MENU (全ページで完全同一) -->
                 <div class="side-box">
                     <div class="side-box-title">■ MENU</div>
                     <ul class="nav-list">
-                        <li class="active-menu"><a href="index.html">🏠 トップ (ポートフォリオ)</a></li>
-                        <li><a href="diary/index.html"><strong>📖 kojikoji81の日記</strong></a></li>
+                        <li class="active-menu"><a href="#top">🏠 ホーム (トップ)</a></li>
+                        <li><a href="#profile-sec">👤 自己紹介</a></li>
+                        <li><a href="#skills-sec">💻 技術スタック</a></li>
+                        <li><a href="#experience-sec">📁 実務経験・実績</a></li>
+                        <li><a href="diary/index.html"><strong>📖 日記 (Diary)</strong></a></li>
                     </ul>
                 </div>
 
@@ -52,15 +55,6 @@
             <td class="content-cell">
 
                 <a name="top"></a>
-
-                <!-- ページ内クイックジャンプ目次ナビゲーション -->
-                <div class="quick-nav-bar">
-                    <span class="quick-nav-title">INDEX:</span>
-                    <a href="#diary-sec" class="quick-nav-btn">📖 日記</a>
-                    <a href="#profile-sec" class="quick-nav-btn">👤 自己紹介</a>
-                    <a href="#skills-sec" class="quick-nav-btn">💻 技術スタック</a>
-                    <a href="#experience-sec" class="quick-nav-btn">📁 実務経験</a>
-                </div>
 
                 <!-- 1. メインサブコンテンツ：日記へのリンク枠 -->
                 <div class="diary-entry" id="diary-sec">

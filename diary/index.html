@@ -25,15 +25,18 @@
 
         <!-- メインコンテンツ ＆ サイドバー -->
         <tr>
-            <!-- サイドバー (左側: 主要ページ移動 & 日記カレンダー) -->
+            <!-- サイドバー (左側: 共通MENU & 日記カレンダー) -->
             <td class="sidebar-cell">
 
-                <!-- 主要ナビゲーション MENU (トップページと完全統一) -->
+                <!-- サイト共通ナビゲーション MENU (トップページと完全同一の5項目) -->
                 <div class="side-box">
                     <div class="side-box-title">■ MENU</div>
                     <ul class="nav-list">
-                        <li><a href="../index.html">🏠 トップ (ポートフォリオ)</a></li>
-                        <li class="active-menu"><a href="#top" onclick="resetDiaryFilter(); return false;"><strong>📖 kojikoji81の日記</strong></a></li>
+                        <li><a href="../index.html#top">🏠 ホーム (トップ)</a></li>
+                        <li><a href="../index.html#profile-sec">👤 自己紹介</a></li>
+                        <li><a href="../index.html#skills-sec">💻 技術スタック</a></li>
+                        <li><a href="../index.html#experience-sec">📁 実務経験・実績</a></li>
+                        <li class="active-menu"><a href="#top" onclick="resetDiaryFilter(); return false;"><strong>📖 日記 (Diary)</strong></a></li>
                     </ul>
                 </div>
 
