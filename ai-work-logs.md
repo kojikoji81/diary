@@ -21,8 +21,9 @@
 - 日記データを単一ファイルから日付ごとの個別ファイル管理（`posts/YYYY-MM-DD.json`）へ変更・実装完了
 - 管理用インデックス `posts/index.json` を新設
 - 手元ツール `editor.html` に「日付別JSONファイルダウンロード機能」を追加
-- 技術スタックから `EKS` の表記を完全削除し、`GCP, AWS, trocco` へ修正・Push完了
+- 技術スタックから `Python, SQL` や `Tableau, Dataiku` の経験年数表記（`3年` `1年` `2年`）を全削除し、シンプルに技術名称のみの表記に修正・Push完了
 - 変更内容を `kojikoji81/portfolio` に Push 完了
+
 
 
 
