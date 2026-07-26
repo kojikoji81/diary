@@ -1,323 +1,239 @@
 /* =========================================================
-   kojikoji81 Portfolio Style (Modern Dark Aesthetic)
+   2000年代初頭 個人テキストサイト / ポートフォリオ スタイルシート
    ========================================================= */
 
-:root {
-    --bg-color: #0b0f19;
-    --card-bg: #131b2e;
-    --card-hover-bg: #1a253e;
-    --text-primary: #f3f4f6;
-    --text-secondary: #9ca3af;
-    --accent-purple: #8b5cf6;
-    --accent-indigo: #6366f1;
-    --accent-pink: #ec4899;
-    --border-color: #1f293d;
-}
-
+/* 基本設定 */
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #050508;
+    color: #e0e0e0;
+    font-family: "MS PGothic", "ＭＳ Ｐゴシック", "Osaka", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
+    font-size: 12px;
     line-height: 1.6;
-    overflow-x: hidden;
+    margin: 0;
+    padding: 15px;
+    background-image: radial-gradient(#1a1a2e 1px, transparent 0);
+    background-size: 8px 8px; /* 薄いドット背景 */
 }
 
-/* ヘッダー */
-.navbar {
-    background: rgba(11, 15, 25, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+/* リンクスタイル */
+a:link {
+    color: #00ffff;
+    text-decoration: underline;
 }
 
-.nav-container {
-    max-width: 1100px;
+a:visited {
+    color: #cc99ff;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #ffff00;
+    background-color: #0000ff;
+    text-decoration: none;
+}
+
+a:active {
+    color: #ff0000;
+}
+
+/* 全体コンテナテーブル */
+table.main-layout {
+    width: 820px;
     margin: 0 auto;
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-collapse: collapse;
+    border: 1px solid #00ff66;
+    background-color: #0c0c12;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
 }
 
-.logo {
-    font-family: 'Outfit', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    color: #fff;
-    text-decoration: none;
-    background: linear-gradient(135deg, var(--accent-indigo), var(--accent-pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.nav-links {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-}
-
-.nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-    color: #fff;
-}
-
-.nav-links a.highlight-link {
-    color: #fff;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(99, 102, 241, 0.4);
-    padding: 6px 14px;
-    border-radius: 20px;
-}
-
-.nav-links a.highlight-link:hover {
-    background: var(--accent-indigo);
-    border-color: var(--accent-indigo);
-}
-
-/* ヒーローセクション */
-.hero {
-    padding: 100px 24px 80px;
+/* ヘッダーエリア */
+td.header-cell {
+    border-bottom: 1px solid #00ff66;
+    background-color: #121220;
+    padding: 15px;
     text-align: center;
-    background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15), transparent 60%);
 }
 
-.hero-container {
-    max-width: 800px;
-    margin: 0 auto;
+h1.site-title {
+    font-size: 20px;
+    color: #00ff66;
+    margin: 5px 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px #00ff66;
 }
 
-.badge {
-    display: inline-block;
-    background: rgba(139, 92, 246, 0.15);
-    color: #c4b5fd;
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 4px 16px;
-    border-radius: 30px;
-    margin-bottom: 20px;
-}
-
-.hero-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 48px;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.gradient-text {
-    background: linear-gradient(135deg, #a78bfa, #f472b6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-description {
-    color: var(--text-secondary);
-    font-size: 18px;
-    margin-bottom: 36px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple));
-    color: #fff;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.6);
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
-    border: 1px solid var(--border-color);
-}
-
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* セクション一般 */
-.section {
-    padding: 80px 24px;
-}
-
-.alt-bg {
-    background-color: #080c14;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.section-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
+.sub-title {
+    font-size: 11px;
+    color: #ff66cc;
     margin-bottom: 8px;
 }
 
-.section-subtitle {
-    color: var(--text-secondary);
-    text-align: center;
-    margin-bottom: 48px;
-    font-size: 15px;
-}
-
-/* カードグリッド */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-}
-
-.content-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 32px;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.featured-card {
-    border-color: rgba(139, 92, 246, 0.4);
-    background: linear-gradient(180deg, #162038, #131b2e);
-}
-
-.featured-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-purple);
-    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.2);
-}
-
-.card-tag {
-    align-self: flex-start;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #a78bfa;
-    background: rgba(167, 139, 250, 0.1);
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-}
-
-.card-icon {
-    font-size: 36px;
-    margin-bottom: 16px;
-}
-
-.card-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #fff;
-}
-
-.card-desc {
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin-bottom: 24px;
-    flex-grow: 1;
-}
-
-.card-link-text {
-    font-size: 14px;
-    font-weight: 700;
-    color: #a78bfa;
-}
-
-.placeholder-card {
-    opacity: 0.7;
-}
-
-.card-status {
+.welcome-msg {
     font-size: 12px;
-    color: var(--text-secondary);
-    font-style: italic;
+    color: #ffffff;
+    border: 1px dashed #666666;
+    padding: 6px;
+    margin: 10px auto;
+    width: 90%;
+    background-color: #000000;
 }
 
-/* アバウトボックス */
-.about-box {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 32px;
-    border-radius: 16px;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+/* マーキー（流れる文字） */
+.marquee-container {
+    background-color: #000033;
+    border-top: 1px solid #333366;
+    border-bottom: 1px solid #333366;
+    color: #ffff00;
+    font-size: 11px;
+    padding: 3px 0;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.about-box h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    color: #fff;
+.marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee-anim 18s linear infinite;
 }
 
-.about-box p {
-    color: var(--text-secondary);
-    font-size: 15px;
+@keyframes marquee-anim {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+/* レイアウトセル */
+td.sidebar-cell {
+    width: 200px;
+    vertical-align: top;
+    border-right: 1px solid #00ff66;
+    background-color: #0a0a10;
+    padding: 10px;
+}
+
+td.content-cell {
+    vertical-align: top;
+    padding: 15px;
+    background-color: #0d0d14;
+}
+
+/* サイドバー枠組み */
+.side-box {
+    border: 1px solid #444466;
+    background-color: #05050a;
+    margin-bottom: 15px;
+    padding: 8px;
+}
+
+.side-box-title {
+    background-color: #1a1a3a;
+    color: #00ffff;
+    font-weight: bold;
+    padding: 3px 6px;
+    margin: -8px -8px 8px -8px;
+    border-bottom: 1px solid #444466;
+    font-size: 12px;
+}
+
+/* ナビゲーションメニュー */
+ul.nav-list {
+    list-style-type: square;
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+ul.nav-list li {
+    margin-bottom: 6px;
+}
+
+/* メインコンテンツボックス */
+.section-box {
+    border: 1px solid #334455;
+    background-color: #07070d;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.section-header {
+    background-color: #151d2a;
+    border-bottom: 1px solid #334455;
+    padding: 6px 10px;
+    font-weight: bold;
+    color: #ffff66;
+    font-size: 13px;
+}
+
+.section-body {
+    padding: 12px;
+    font-size: 12px;
+    color: #dddddd;
+}
+
+.retro-btn {
+    display: inline-block;
+    background: linear-gradient(to bottom, #0088ff, #0044aa);
+    color: #ffffff !important;
+    border: 2px outset #66b2ff;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.retro-btn:active {
+    border-style: inset;
+}
+
+/* プロフィールテーブル */
+table.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #333344;
+}
+
+table.profile-table th {
+    background: #111122;
+    border: 1px solid #333344;
+    color: #00ffff;
+    padding: 6px;
+    width: 30%;
+    text-align: left;
+}
+
+table.profile-table td {
+    border: 1px solid #333344;
+    padding: 6px;
+    color: #dddddd;
 }
 
 /* フッター */
-.footer {
-    border-top: 1px solid var(--border-color);
-    padding: 32px 24px;
+td.footer-cell {
+    border-top: 1px solid #00ff66;
+    background-color: #080810;
+    padding: 10px;
     text-align: center;
-    color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 11px;
+    color: #888888;
 }
 
-@media (max-width: 600px) {
-    .hero-title {
-        font-size: 32px;
+/* レスポンシブ調整 */
+@media (max-width: 840px) {
+    table.main-layout {
+        width: 100%;
     }
-    .hero-description {
-        font-size: 15px;
+    td.sidebar-cell {
+        display: block;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #00ff66;
     }
-    .hero-buttons {
-        flex-direction: column;
+    td.content-cell {
+        display: block;
+        width: 100%;
     }
 }
