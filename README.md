@@ -1,12 +1,46 @@
-# kojikoji81の日記
+# kojikoji81 Portfolio & Diary
 
-2000年代初頭の日本の「個人日記 / テキストサイト」の雰囲気を再現した純粋な HTML / CSS / JavaScript の静的Webサイトです。
+2000年代初頭の日本の個人テキストサイト・個人Webサイトの雰囲気を再現した、ポートフォリオ ＆ 個人日記ポータルサイトです。
 
-## 特徴・デザイン
-- **タイトル**: kojikoji81の日記
-- **黒背景 ＆ 蛍光色テキスト**: ネオンカラー（蛍光緑・ピンク・シアン・イエロー）
-- **1px枠線 ＆ テーブルレイアウト**: `<table>` と `1px solid` の伝統的レイアウト
-- **アクセスカウンター**: 7セグデジタル風デザイン ＆ `localStorage` による訪問カウント
-- **Web拍手機能**: ポップアップメッセージと拍手カウント
-- **当時のネット表現**: （笑）、（爆）、（マテ、<s>打消し線</s>、小文字つぶやきなど日記特化
-- **純粋な日記サイト**: プロフィールや外部リンクを省き、日記コンテンツに集中したシンプル設計
+## 🌐 公開 URL
+- **ポートフォリオ（トップ）**: [https://kojikoji81.github.io/portfolio/](https://kojikoji81.github.io/portfolio/)
+- **kojikoji81の日記（サブコンテンツ）**: [https://kojikoji81.github.io/portfolio/diary/](https://kojikoji81.github.io/portfolio/diary/)
+- **GitHub リポジトリ**: [https://github.com/kojikoji81/portfolio](https://github.com/kojikoji81/portfolio)
+
+---
+
+## 📁 階層・ファイル構成
+```text
+portfolio/
+├── index.html            # ポートフォリオ（トップページ）
+├── style.css             # ポートフォリオ用スタイル (レトロテキストサイト風)
+├── script.js             # ポートフォリオ用JS (カレンダー連携)
+├── README.md             # プロジェクト説明書
+└── diary/                # 日記サブディレクトリ
+    ├── index.html        # 日記メインページ
+    ├── style.css         # 日記用スタイル
+    ├── script.js         # 日記用動的描画JS
+    ├── editor.html       # 日記作成ツール
+    └── posts/            # 日記データ
+        ├── index.json    # 記事日付インデックス ["2026-07-25"]
+        └── 2026-07-25.json
+```
+
+---
+
+## ✍️ 日記の追加手順 (GitHub Web上から)
+
+1. GitHub リポジトリ ([https://github.com/kojikoji81/portfolio](https://github.com/kojikoji81/portfolio)) を開きます。
+2. `diary/posts/` フォルダに入り、**Add file ➔ Create new file** から `2026-07-26.json` を作成・コミットします。
+   ```json
+   {
+     "date": "2026-07-26",
+     "displayDate": "2026/07/26（日）",
+     "title": "今日の日記タイトル",
+     "tag": "日記",
+     "content": [
+       "ここに日記本文を書きます。"
+     ]
+   }
+   ```
+3. `diary/posts/index.json` を編集し、`"2026-07-26"` を追加してコミットすると、1分程度で自動反映されます。
