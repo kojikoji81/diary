@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: #050508;
     color: #e0e0e0;
@@ -18,6 +22,7 @@ body {
     background-image: radial-gradient(#1a1a2e 1px, transparent 0);
     background-size: 8px 8px; /* 薄いドット背景 */
 }
+
 
 /* 全体コンテナテーブル */
 table.main-layout {
@@ -229,8 +234,65 @@ table.calendar-table td.today-cell {
     cursor: pointer;
 }
 
+/* ページ内クイックジャンプナビゲーション */
+.quick-nav-bar {
+    background-color: #111122;
+    border: 1px solid #333355;
+    padding: 6px 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 11px;
+}
+
+.quick-nav-title {
+    color: #ffff00;
+    font-weight: bold;
+}
+
+.quick-nav-btn {
+    background: #000;
+    color: #00ffff !important;
+    border: 1px solid #00ffff;
+    padding: 2px 8px;
+    text-decoration: none !important;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+
+.quick-nav-btn:hover {
+    background: #00ffff;
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.retro-action-btn {
+    display: inline-block;
+    background: linear-gradient(to bottom, #00aa55, #006633);
+    color: #ffffff !important;
+    border: 2px outset #66ffaa;
+    padding: 6px 18px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none !important;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 255, 128, 0.4);
+}
+
+.retro-action-btn:hover {
+    background: linear-gradient(to bottom, #00cc66, #008844);
+    box-shadow: 0 0 8px rgba(0, 255, 128, 0.8);
+}
+
+.retro-action-btn:active {
+    border-style: inset;
+}
+
 /* メインコンテンツ - 日記・コンテンツエントリー */
 .diary-entry {
+
     border: 1px solid #334455;
     background-color: #07070d;
     margin-bottom: 20px;

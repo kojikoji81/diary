@@ -25,51 +25,61 @@
 
         <!-- メインコンテンツ ＆ サイドバー -->
         <tr>
-            <!-- サイドバー (左側: 共通MENUとカレンダー) -->
+            <!-- サイドバー (左側: 主要ページ移動 & 日記カレンダー) -->
             <td class="sidebar-cell">
 
-                <!-- サイト共通ナビゲーション MENU -->
+                <!-- 主要ナビゲーション MENU -->
                 <div class="side-box">
                     <div class="side-box-title">■ MENU</div>
                     <ul class="nav-list">
-                        <li class="active-menu"><a href="#top">🏠 ホーム (トップ)</a></li>
-                        <li><a href="#profile">👤 自己紹介</a></li>
-                        <li><a href="#skills">💻 技術スタック</a></li>
-                        <li><a href="#experience">📁 実務経験・実績</a></li>
-                        <li><a href="diary/index.html"><strong>📖 日記 (Diary)</strong></a></li>
+                        <li class="active-menu"><a href="index.html">🏠 トップ (ポートフォリオ)</a></li>
+                        <li><a href="diary/index.html"><strong>📖 kojikoji81の日記</strong></a></li>
+                        <li><a href="diary/editor.html" target="_blank">✍️ 日記作成ツール</a></li>
                     </ul>
                 </div>
 
-                <!-- カレンダー -->
+                <!-- 日記カレンダー -->
                 <div class="side-box">
-                    <div class="side-box-title">■ CALENDAR</div>
+                    <div class="side-box-title">■ DIARY CALENDAR</div>
+                    <div style="font-size: 10px; color: #aaaaaa; margin-bottom: 5px; text-align: center;">
+                        緑色の日付クリックで日記へ
+                    </div>
                     <div id="calendar-widget"></div>
                 </div>
 
             </td>
 
-            <!-- メインコンテンツ (右側: 各セクション) -->
+            <!-- メインコンテンツ (右側) -->
             <td class="content-cell">
 
                 <a name="top"></a>
 
-                <!-- メインサブコンテンツ：日記へのリンク枠 -->
-                <div class="diary-entry">
+                <!-- ページ内クイックジャンプ目次ナビゲーション -->
+                <div class="quick-nav-bar">
+                    <span class="quick-nav-title">INDEX:</span>
+                    <a href="#diary-sec" class="quick-nav-btn">📖 日記</a>
+                    <a href="#profile-sec" class="quick-nav-btn">👤 自己紹介</a>
+                    <a href="#skills-sec" class="quick-nav-btn">💻 技術スタック</a>
+                    <a href="#experience-sec" class="quick-nav-btn">📁 実務経験</a>
+                </div>
+
+                <!-- 1. メインサブコンテンツ：日記へのリンク枠 -->
+                <div class="diary-entry" id="diary-sec">
                     <div class="entry-header">
                         <span class="entry-date-title">📖 kojikoji81の日記 (Diary)</span>
-                        <span class="entry-tag">Sub Content</span>
+                        <span class="entry-tag">Main Content</span>
                     </div>
                     <div class="entry-body">
                         <p><strong>最新エントリー：</strong> 2026/07/25（土） 「母が亡くなったので初めてみました」</p>
-                        <p style="margin-top: 10px;">
-                            👉 <a href="diary/index.html" style="color: #00ffff; font-weight: bold; text-decoration: underline; font-size: 13px;"><u>kojikoji81の日記ページを開く &rarr;</u></a>
+                        <p>日々の出来事や思ったことを綴っている個人日記です。カレンダー検索も可能です。</p>
+                        <p style="margin-top: 15px;">
+                            <a href="diary/index.html" class="retro-action-btn">📖 kojikoji81の日記を読む &rarr;</a>
                         </p>
                     </div>
                 </div>
 
-                <!-- 自己紹介・概要 -->
-                <a name="profile"></a>
-                <div class="diary-entry">
+                <!-- 2. 自己紹介・概要 -->
+                <div class="diary-entry" id="profile-sec">
                     <div class="entry-header">
                         <span class="entry-date-title">Profile & Summary (自己紹介・概要)</span>
                         <span class="entry-tag">About</span>
@@ -85,9 +95,8 @@
                     </div>
                 </div>
 
-                <!-- 技術スタック詳細 -->
-                <a name="skills"></a>
-                <div class="diary-entry">
+                <!-- 3. 技術スタック詳細 -->
+                <div class="diary-entry" id="skills-sec">
                     <div class="entry-header">
                         <span class="entry-date-title">Technical Skills (詳細技術スタック)</span>
                         <span class="entry-tag">Skills</span>
@@ -118,9 +127,8 @@
                     </div>
                 </div>
 
-                <!-- 詳細実務経験・実績 -->
-                <a name="experience"></a>
-                <div class="diary-entry">
+                <!-- 4. 詳細実務経験・実績 -->
+                <div class="diary-entry" id="experience-sec">
                     <div class="entry-header">
                         <span class="entry-date-title">Experience & Project Achievements (詳細実務経験・実績)</span>
                         <span class="entry-tag">Projects</span>
